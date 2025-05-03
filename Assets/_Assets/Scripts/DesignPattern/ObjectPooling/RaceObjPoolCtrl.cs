@@ -31,12 +31,8 @@ public class RaceObjPoolCtrl : MonoBehaviour
     {
         if (racePools.TryGetValue(nameRaceObj, out Queue<RaceObj> value))
         {
-            if (value.Count > 0) return value.Dequeue();
-            else
-            {
-                CreateRacePool(nameRaceObj, 1);
-                return value.Dequeue();
-            }
+            if (value.Count <= 0) CreateRacePool(nameRaceObj, 1);
+            return value.Dequeue();
         }
         else Debug.LogError("Existn't race object with name " + nameRaceObj);
         return null;
@@ -67,17 +63,19 @@ public class RaceObjPoolCtrl : MonoBehaviour
                 for (int i = 0; i < number; i++)
                 {
                     RaceObj raceObject = Instantiate(raceObj.go, transform);
+                    raceObject.SetName(raceObj.nameGO);
+                    raceObject.gameObject.SetActive(false);
                     value.Enqueue(raceObject);
                 }
             }
         }
     }
-    public RaceObj ActiveRaceObject(string nameRaceObj, Vector3 activePos, Transform parent)
+    public RaceObj ActiveRaceObject(string nameRaceObj, Vector3 activePos, Transform parent, MapSetUp setUp)
     {
         RaceObj raceObj = GetRaceObject(nameRaceObj);
         raceObj.transform.parent = parent;
         raceObj.transform.localPosition = activePos;
-        raceObj.gameObject.SetActive(true);
+        raceObj.ActiveRaceObj(setUp);
         return raceObj;
     }
     public void AddPool(RaceObj raceObj)

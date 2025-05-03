@@ -5,15 +5,15 @@ public class CoinItem : RaceObj, IItem
     {
         collector.CollectCoin(coinValue);
         GameManager.Instance.GetCoin();
-        gameObject?.SetActive(false);
+        DisableObj();
     }
     private void OnEnable()
     {
         CoinManager.Instance?.Register(this);
     }
-    protected override void OnDisable()
+    public override void DisableObj()
     {
-        base.OnDisable();
-        CoinManager.Instance?.Unregister(this);
+        CoinManager.Instance.Unregister(this);
+        base.DisableObj();
     }
 }

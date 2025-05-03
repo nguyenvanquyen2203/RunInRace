@@ -32,7 +32,7 @@ public class MapController : MonoBehaviour, IMapObserver
     {
         mapSetup.DisableMap();
         RaceObjPoolCtrl.Instance.AddGround(this);
-        gameObject?.SetActive(false);
+        gameObject.SetActive(false);
     }
     public void StopRun() => mapSpeed = 0f;
     public void SetSpeed(float newSpeed)

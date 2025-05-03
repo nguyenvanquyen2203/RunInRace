@@ -2,19 +2,22 @@ using UnityEngine;
 
 public abstract class RaceObj : MonoBehaviour
 {
+    [HideInInspector] public MapSetUp setUp;
     private string nameRaceObj;
     public void SetName(string nameRaceObj)
     {
         this.nameRaceObj = nameRaceObj;
     }
-    public virtual void ActiveRaceObj()
+    public virtual void ActiveRaceObj(MapSetUp _setUp)
     {
+        setUp = _setUp;
         gameObject.SetActive(true);
     }
     public string GetName() => nameRaceObj;
-    protected virtual void OnDisable()
+    public virtual void DisableObj()
     {
-        RaceObjPoolCtrl.Instance.AddPool(this);
-        gameObject.SetActive(false);
+        setUp.DisableObj(this);
+        /*RaceObjPoolCtrl.Instance.AddPool(this);
+        gameObject.SetActive(false);*/
     }
 }

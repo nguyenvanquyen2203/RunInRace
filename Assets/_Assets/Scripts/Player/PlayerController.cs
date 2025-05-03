@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     public RunState runState;
     public JumpState jumpState;
     public SlideState slideState;
+    public DieState dieState;
     public enum OnTriggerEvent
     {
         EndSlide
@@ -28,7 +29,9 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
         runState = new RunState(this);
         jumpState = new JumpState(this);  
         slideState = new SlideState(this);
+        dieState = new DieState(this);
         GameManager.Instance.AddObserver(this);
+        GetComponent<PlayerState>().deathEvt.AddListener(Death);
     }
     public void ChangeState(p_State newState)
     {
@@ -93,6 +96,10 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
 
     public void OverState()
     {
-        throw new System.NotImplementedException();
+        
+    }
+    public void Death()
+    {
+        ChangeState(dieState);
     }
 }
