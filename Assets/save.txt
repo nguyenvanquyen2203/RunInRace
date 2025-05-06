@@ -1,0 +1,1 @@
+{"powerUps":[{"namePU":"Shield","timeActive":6.400000095367432,"upgradeCost":19},{"namePU":"Magnet","timeActive":5.0,"upgradeCost":5}]}

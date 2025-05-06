@@ -5,7 +5,13 @@ public class PlayerCollection : MonoBehaviour
     public ParticleSystem coinCollection;
     public MagnetZone magnetZone;
     public Shield shield;
-    
+    private float shieldTime;
+    private float magnetTime;
+    private void Start()
+    {
+        GameManager.Instance.InitializeGameEvent.AddListener(ResetGame);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Items"))
@@ -19,14 +25,19 @@ public class PlayerCollection : MonoBehaviour
         coinCollection.Clear();
         coinCollection.Play();
     }
-    public void CollectMagnet(float uptime)
+    public void CollectMagnet()
     {
         magnetZone.gameObject.SetActive(true);
-        CoinManager.Instance.SetTimeMagnet(uptime);
+        CoinManager.Instance.SetTimeMagnet(magnetTime);
     }
-    public void CollectShield(float uptime)
+    public void CollectShield()
     {
         shield.gameObject.SetActive(true);
-        shield.ActiveShield(uptime);
+        shield.ActiveShield(shieldTime);
+    }
+    public void ResetGame()
+    {
+        shieldTime = PowerUpInformation.Instance.GetPU("Shield").timeActive;
+        magnetTime = PowerUpInformation.Instance.GetPU("Magnet").timeActive;
     }
 }

@@ -14,23 +14,26 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     public JumpState jumpState;
     public SlideState slideState;
     public DieState dieState;
+    private Vector3 originalPos;
     public enum OnTriggerEvent
     {
         EndSlide
     }
     private void Awake()
     {
+        originalPos = transform.position;
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
     }
     private void Start()
     {
-        currentAnimState = "Idle";
+        IntinializeState();
         runState = new RunState(this);
         jumpState = new JumpState(this);  
         slideState = new SlideState(this);
         dieState = new DieState(this);
         GameManager.Instance.AddObserver(this);
+        GameManager.Instance.ClearEvent.AddListener(IntinializeState);
         GetComponent<PlayerState>().deathEvt.AddListener(Death);
     }
     public void ChangeState(p_State newState)
@@ -81,16 +84,22 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     public Vector3 GetVelocity() => rb.velocity;
     public void OnTriggerEventAct(OnTriggerEvent evt)
     {
-        //Debug.LogError(evt.ToString());
         state.TriggerEvent(evt);
     }
     public void Slide()
     {
         if (isGrounded) ChangeState(slideState);
     }
+    private void IntinializeState() {
+        currentAnimState = "Idle";
+        transform.position = originalPos;
+        ChangeAnimState(currentAnimState, 0f);
+        rb.useGravity = false;
+    }
 
     public void StartState()
     {
+        rb.useGravity = true;
         ChangeState(runState);
     }
 

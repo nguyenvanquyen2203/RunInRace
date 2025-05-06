@@ -16,5 +16,9 @@ public class MapSubject : MonoBehaviour
     {
         foreach (IMapObserver observer in observers) observer.SetSpeed(speed);
     }
-    public void ClearObservers() => observers.Clear();
+    public void ClearObservers()
+    {
+        foreach (IMapObserver observer in observers) observer.Clear();
+        observers.Clear();
+    }
 }

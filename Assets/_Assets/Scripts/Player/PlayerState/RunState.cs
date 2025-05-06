@@ -8,6 +8,7 @@ public class RunState : p_State
     }
     public override void EnterState()
     {
+        Debug.Log("Enter RunState");
         controller.ChangeAnimState("Running", .2f);
     }
 

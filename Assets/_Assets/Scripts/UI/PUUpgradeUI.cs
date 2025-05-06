@@ -17,7 +17,8 @@ public class PUUpgradeUI : MonoBehaviour
     public void SetManager(PowerUpUpgradeManager _manager) => this.manager = _manager;
     public void ResetPUUpgradeUI()
     {
-        PowerUpSO pu = PowerUpInformation.Instance.powerUpInfor.GetPowerUp(namePU);
+        //PowerUpSO pu = PowerUpInformation.Instance.powerUpInfor.GetPowerUp(namePU);
+        PowerUpSO pu = PowerUpInformation.Instance.GetPU(namePU);
         namePUUpgrade.text = namePU;
         timeActive.text = pu.timeActive.ToString();
         PUImg.sprite = pu.image;
@@ -29,7 +30,7 @@ public class PUUpgradeUI : MonoBehaviour
     }
     public void UpgradeBtn()
     {
-        PowerUpInformation.Instance.powerUpInfor.UpgradePU(0.1f, namePU);
+        PowerUpInformation.Instance.UpgradePU(0.1f, namePU);
         CoinData.Instance.PlusCoin(-costUpgrade);
         manager.ResetPUUpgradeUI();
         //ResetPUUpgradeUI();

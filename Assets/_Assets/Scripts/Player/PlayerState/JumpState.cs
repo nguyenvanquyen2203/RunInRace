@@ -9,7 +9,6 @@ public class JumpState : p_State
 
     public override void EnterState()
     {
-        Debug.Log("Enter Jump State");
         controller.Jump();
         controller.ChangeAnimState("Jump", .1f);
     }
@@ -31,7 +30,7 @@ public class JumpState : p_State
 
     public override void Update()
     {
-        if (controller.GetVelocity().y < 0f) 
+        if (controller.GetVelocity().y < -0.5f) 
         {
             if (controller.IsGrounded()) controller.ChangeState(controller.runState);
         }

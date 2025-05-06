@@ -12,6 +12,7 @@ public class CoinData : MonoBehaviour
         instance = this;
         if (PlayerPrefs.HasKey("Coin")) coin = PlayerPrefs.GetInt("Coin");
         else coin = 0;
+        //coin = 10000;
     }
     public int GetCoin() => coin;
     public void PlusCoin(int plusCoin)

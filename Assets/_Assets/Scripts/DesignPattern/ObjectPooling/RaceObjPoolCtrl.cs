@@ -24,6 +24,7 @@ public class RaceObjPoolCtrl : MonoBehaviour
         {
             MapController map = Instantiate(ground, transform);
             map.gameObject.SetActive(false);
+            map.gameObject.name = i.ToString();
             grounds.Enqueue(map);
         }
     }
@@ -86,6 +87,14 @@ public class RaceObjPoolCtrl : MonoBehaviour
             racePools[raceObj.GetName()].Enqueue(raceObj);
         }
     }
-    public void AddGround(MapController _map) => grounds.Enqueue(_map);
-    public MapController ActiveGround() => grounds.Dequeue();
+    public void AddGround(MapController _map)
+    {
+        Debug.Log("Enqueue Ground " + grounds.Count);
+        grounds.Enqueue(_map);
+    }
+    public MapController ActiveGround()
+    {
+        Debug.Log("Dequeue Ground " + grounds.Count);
+        return grounds.Dequeue();
+    } 
 }

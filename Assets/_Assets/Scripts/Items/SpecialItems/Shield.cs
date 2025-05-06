@@ -27,6 +27,6 @@ public class Shield : MonoBehaviour
         transform.position = playerState.transform.position + Vector3.up * 0.75f;
         activeTime = uptime;
         playerState.GetShiled();
-        PowerUpManager.Instance.ActivePowerUp("Shield");
+        PowerUpInformation.Instance.ActivePowerUp("Shield");
     }
 }

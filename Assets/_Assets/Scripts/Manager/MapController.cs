@@ -19,24 +19,33 @@ public class MapController : MonoBehaviour, IMapObserver
     }
     private void FixedUpdate()
     {
-        if (transform.position.z < -10f) Disable();
+        //if (transform.position.z < -10f) DisableMap();
         transform.position += Vector3.back * mapSpeed * Time.fixedDeltaTime;
-        if (transform.position.z < -5f)
+        if (transform.position.z < -10f)
         {
-            _MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 30f);
-            Disable();
+            _MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 40f);
+            DisableMap();
         }
     }
-
-    private void Disable()
+    public void DisableMap()
     {
+        Debug.LogWarning("Disable Map " + gameObject.name);
         mapSetup.DisableMap();
         RaceObjPoolCtrl.Instance.AddGround(this);
+        _MapManager.Instance.RemoveObserver(this);
         gameObject.SetActive(false);
     }
     public void StopRun() => mapSpeed = 0f;
     public void SetSpeed(float newSpeed)
     {
         mapSpeed = newSpeed;
+    }
+
+    public void Clear()
+    {
+        Debug.LogWarning("Disable Map " + gameObject.name);
+        mapSetup.DisableMap();
+        RaceObjPoolCtrl.Instance.AddGround(this);
+        gameObject.SetActive(false);
     }
 }

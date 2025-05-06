@@ -28,13 +28,6 @@ public class InputManager : MonoBehaviour, IGameStateObserver
         onFoot.Disable();
         mouse.Disable();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     private void OnEnable()
     {
         /*onFoot.Enable();
@@ -54,6 +47,7 @@ public class InputManager : MonoBehaviour, IGameStateObserver
 
     public void StartState()
     {
+        Debug.Log("Start Input");
         onFoot.Enable();
         mouse.Enable();
         menu.Disable();
@@ -61,6 +55,7 @@ public class InputManager : MonoBehaviour, IGameStateObserver
 
     public void OverState()
     {
+        Debug.Log("Over Input");
         onFoot.Disable();
         mouse.Disable();
         menu.Enable();
