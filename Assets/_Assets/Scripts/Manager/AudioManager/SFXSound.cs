@@ -9,6 +9,7 @@ public class SFXSound : Sound
         src.clip = clip;
         src.pitch = pitch;
         src.loop = false;
+        src.playOnAwake = false;
     }
     public void PlayMusic()
     {

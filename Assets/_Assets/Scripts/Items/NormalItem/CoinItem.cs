@@ -5,6 +5,7 @@ public class CoinItem : RaceObj, IItem
     {
         collector.CollectCoin(coinValue);
         GameManager.Instance.GetCoin();
+        AudioManager.Instance.PlaySFX("CollectCoin");
         DisableObj();
     }
     private void OnEnable()

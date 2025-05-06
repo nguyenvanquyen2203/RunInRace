@@ -9,6 +9,7 @@ public class JumpState : p_State
 
     public override void EnterState()
     {
+        AudioManager.Instance.PlaySFX("Jump");
         controller.Jump();
         controller.ChangeAnimState("Jump", .1f);
     }

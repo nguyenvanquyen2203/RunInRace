@@ -57,6 +57,7 @@ public class GameManager : GameStateSubject
     }
     public void ResetMap()
     {
+        AudioManager.Instance.PlayMusic("GameMusic");
         InitializeGameEvent?.Invoke();
         mapManager.StopRun();
     }

@@ -12,6 +12,7 @@ public class MusicSound
     {
         src = _src;
         src.loop = true;
+        src.playOnAwake = false;
     }
     public void PlayMusic(string name)
     {

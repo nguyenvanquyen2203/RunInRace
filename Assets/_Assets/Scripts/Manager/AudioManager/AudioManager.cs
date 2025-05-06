@@ -16,12 +16,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        if (instance == null) instance = this;
-        else
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
+        instance = this;
         AudioSource temp = gameObject.AddComponent<AudioSource>();
         musicSounds.InitSrc(temp);
         musicSounds.SetVolumn(audioData.musicVolumn);

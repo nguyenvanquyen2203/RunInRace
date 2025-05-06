@@ -9,6 +9,7 @@ public class DieState : p_State
 
     public override void EnterState()
     {
+        AudioManager.Instance.PlaySFX("Death");
         Debug.Log("Enter Jump State");
         controller.ChangeAnimState("Death", .1f);
     }

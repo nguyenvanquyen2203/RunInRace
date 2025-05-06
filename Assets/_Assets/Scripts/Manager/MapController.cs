@@ -23,7 +23,7 @@ public class MapController : MonoBehaviour, IMapObserver
         transform.position += Vector3.back * mapSpeed * Time.fixedDeltaTime;
         if (transform.position.z < -10f)
         {
-            _MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 40f);
+            _MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 39f);
             DisableMap();
         }
     }

@@ -3,7 +3,8 @@ public class Magnet : RaceObj, IItem
     public void CollectEvent(PlayerCollection collector)
     {
         collector.CollectMagnet();
-        gameObject.SetActive(false);
+        AudioManager.Instance.PlaySFX("CollectItem");
         PowerUpInformation.Instance.ActivePowerUp("Magnet");
+        gameObject.SetActive(false);
     }
 }
