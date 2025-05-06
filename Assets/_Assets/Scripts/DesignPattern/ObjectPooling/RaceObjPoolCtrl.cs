@@ -89,12 +89,10 @@ public class RaceObjPoolCtrl : MonoBehaviour
     }
     public void AddGround(MapController _map)
     {
-        Debug.Log("Enqueue Ground " + grounds.Count);
         grounds.Enqueue(_map);
     }
     public MapController ActiveGround()
     {
-        Debug.Log("Dequeue Ground " + grounds.Count);
         return grounds.Dequeue();
     } 
 }
