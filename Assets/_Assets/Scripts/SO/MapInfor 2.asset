@@ -20,6 +20,6 @@ MonoBehaviour:
   - localPosition: {x: -2, y: 1, z: 2}
     raceObjName: Shield
   - localPosition: {x: -2, y: 1, z: -5}
-    raceObjName: Coin
+    raceObjName: ScoreBoost
   - localPosition: {x: -2, y: 1, z: 5}
     raceObjName: Coin

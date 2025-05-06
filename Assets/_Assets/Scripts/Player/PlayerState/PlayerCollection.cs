@@ -7,6 +7,7 @@ public class PlayerCollection : MonoBehaviour
     public Shield shield;
     private float shieldTime;
     private float magnetTime;
+    private float scoreTime;
     private void Start()
     {
         GameManager.Instance.InitializeGameEvent.AddListener(ResetGame);
@@ -35,9 +36,14 @@ public class PlayerCollection : MonoBehaviour
         shield.gameObject.SetActive(true);
         shield.ActiveShield(shieldTime);
     }
+    public void CollectScoreBoost()
+    {
+        ScoreManager.Instance.BoostScore(scoreTime);
+    }
     public void ResetGame()
     {
         shieldTime = PowerUpInformation.Instance.GetPU("Shield").timeActive;
         magnetTime = PowerUpInformation.Instance.GetPU("Magnet").timeActive;
+        scoreTime = PowerUpInformation.Instance.GetPU("ScoreBoost").timeActive;
     }
 }

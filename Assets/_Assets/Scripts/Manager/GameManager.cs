@@ -9,10 +9,8 @@ public class GameManager : GameStateSubject
     public _MapManager mapManager;
     [SerializeField] private float mapSpeed;
     [HideInInspector] public UnityEvent InitializeGameEvent;
-    //[HideInInspector] public UnityEvent DeathEvent;
     [HideInInspector] public UnityEvent ClearEvent;
     public TextMeshProUGUI coinText;
-    //public GameObject menuUI;
     public float timeSpeedUp;
     private int coinMap;
     private float currentTime;
