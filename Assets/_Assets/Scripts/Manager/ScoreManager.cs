@@ -21,6 +21,7 @@ public class ScoreManager : MonoBehaviour, IGameStateObserver
     }
     void Start()
     {
+        GameManager.Instance.ClearEvent.AddListener(ResetScore);
         score = 0;
         multiScore = 1;
         stopCount = true;
@@ -49,8 +50,7 @@ public class ScoreManager : MonoBehaviour, IGameStateObserver
 
     public void StartState()
     {
-        score = 0;
-        scoreTxt.text = ((int)score).ToString();
+        ResetScore();
         stopCount = false;
     }
 
@@ -65,5 +65,10 @@ public class ScoreManager : MonoBehaviour, IGameStateObserver
             PlayerPrefs.SetInt("HighScore", (int)score);
         }
         else highScoreTxt.gameObject.SetActive(false);
+    }
+    public void ResetScore()
+    {
+        score = 0;
+        scoreTxt.text = ((int)score).ToString();
     }
 }

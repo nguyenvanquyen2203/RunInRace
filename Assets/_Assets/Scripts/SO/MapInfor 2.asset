@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raceObjs:
   - localPosition: {x: -2, y: 1, z: 0}
-    raceObjName: Coin
+    raceObjName: HighSign
   - localPosition: {x: -2, y: 1, z: -2}
     raceObjName: Magnet
   - localPosition: {x: -2, y: 1, z: 2}

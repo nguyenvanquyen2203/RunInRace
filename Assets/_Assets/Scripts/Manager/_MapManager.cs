@@ -21,6 +21,11 @@ public class _MapManager : MapSubject, IGameStateObserver
         MapController map = RaceObjPoolCtrl.Instance.ActiveGround();
         map.ActiveMap(spawnPos, mapInfor[Random.Range(0, mapInfor.Count)], speed);
     }
+    public void SpawnDefaultMap(Vector3 spawnPos)
+    {
+        MapController map = RaceObjPoolCtrl.Instance.ActiveGround();
+        map.ActiveMap(spawnPos, mapInfor[mapInfor.Count - 1], speed);
+    }
     public void SetMapSpeed(float newSpeed) => speed = newSpeed;
     public void StartRun()
     {

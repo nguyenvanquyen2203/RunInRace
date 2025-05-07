@@ -14,6 +14,7 @@ public class PlayerContact : MonoBehaviour
             if (collision.GetContact(0).normal.z > -.5f) return; 
             if (state.IsShield())
             {
+                AudioManager.Instance.PlaySFX("DestroyItem");
                 collision.gameObject.SetActive(false);
                 return;
             }
