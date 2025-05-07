@@ -20,7 +20,7 @@ public class PUUpgradeUI : MonoBehaviour
         //PowerUpSO pu = PowerUpInformation.Instance.powerUpInfor.GetPowerUp(namePU);
         PowerUpSO pu = PowerUpInformation.Instance.GetPU(namePU);
         namePUUpgrade.text = namePU;
-        timeActive.text = pu.timeActive.ToString();
+        timeActive.text = pu.timeActive.ToString() + "s";
         PUImg.sprite = pu.image;
         costUpgrade = pu.upgradeCost;
         upgradeCost.text = costUpgrade.ToString();

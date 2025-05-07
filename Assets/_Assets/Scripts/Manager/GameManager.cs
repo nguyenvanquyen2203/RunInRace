@@ -11,6 +11,7 @@ public class GameManager : GameStateSubject
     [HideInInspector] public UnityEvent InitializeGameEvent;
     [HideInInspector] public UnityEvent ClearEvent;
     public TextMeshProUGUI coinText;
+    public TextMeshProUGUI hdText;
     public float timeSpeedUp;
     private int coinMap;
     private float currentTime;
@@ -38,10 +39,10 @@ public class GameManager : GameStateSubject
     }
     public void InitializeMap()
     {
-        mapManager.SpawnMap(Vector3.zero);
-        mapManager.SpawnMap(Vector3.forward * 10);
-        mapManager.SpawnMap(Vector3.forward * 20);
-        mapManager.SpawnMap(Vector3.forward * 30);
+        mapManager.SpawnDefaultMap(Vector3.zero);
+        mapManager.SpawnDefaultMap(Vector3.forward * 10);
+        mapManager.SpawnDefaultMap(Vector3.forward * 20);
+        mapManager.SpawnDefaultMap(Vector3.forward * 30);
     }
     public void GetCoin()
     {
@@ -52,12 +53,23 @@ public class GameManager : GameStateSubject
     {
         Debug.Log("StartGame");
         StartGameAct();
+        CloseHD();
     }
     public void ResetMap()
     {
         AudioManager.Instance.PlayMusic("GameMusic");
         InitializeGameEvent?.Invoke();
         mapManager.StopRun();
+        OpenHD();
+        //StartGame();
+    }
+    private void OpenHD()
+    {
+        hdText.gameObject.SetActive(true);
+    }
+    private void CloseHD()
+    {
+        hdText.gameObject.SetActive(false);
     }
     public void ClearMap()
     {
