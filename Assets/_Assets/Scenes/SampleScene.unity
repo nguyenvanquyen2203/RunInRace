@@ -13815,6 +13815,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
     volumn: 0.5
     pitch: 1
+  - name: Upgrage
+    clip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
+    volumn: 0.5
+    pitch: 1
 --- !u!82 &1896782259
 AudioSource:
   m_ObjectHideFlags: 0
