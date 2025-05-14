@@ -6,6 +6,7 @@ public class PlayerState : MonoBehaviour
     private static PlayerState instance;
     public static PlayerState Instance {  get { return instance; } }
     [HideInInspector] public UnityEvent deathEvt;
+    public Shield shield;
     private bool isShield = false;
     private void Awake()
     {
@@ -17,6 +18,10 @@ public class PlayerState : MonoBehaviour
         deathEvt?.Invoke();
     }
     public void GetShiled() => isShield = true;
-    public void DisableShiled() => isShield = false;
+    public void DisableShiled()
+    {
+        isShield = false;
+        shield.DisableShield();
+    }
     public bool IsShield() => isShield;
 }

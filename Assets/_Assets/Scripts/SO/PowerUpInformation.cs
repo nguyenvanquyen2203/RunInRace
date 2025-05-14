@@ -88,6 +88,15 @@ public class PowerUpInformation : MonoBehaviour
             powerUps[i + 1].gameObject.SetActive(false);
         }
     }
+    public void ClearPU()
+    {
+        for (int i = powerUps.Count - 1; i >= 0; i--) CancelPU(powerUps[i]);
+    }
+    public void CancelPU(string name)
+    {
+        PowerUp pU = powerUps.Find(element => element.GetName() == name);
+        CancelPU(pU);
+    }
 }
 [System.Serializable]
 public class PowerUpData

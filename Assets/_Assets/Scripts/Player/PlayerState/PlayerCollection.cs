@@ -33,7 +33,6 @@ public class PlayerCollection : MonoBehaviour
     }
     public void CollectShield()
     {
-        shield.gameObject.SetActive(true);
         shield.ActiveShield(shieldTime);
     }
     public void CollectScoreBoost()

@@ -30,6 +30,7 @@ public class PUUpgradeUI : MonoBehaviour
     }
     public void UpgradeBtn()
     {
+        AudioManager.Instance.PlaySFX("Upgrade");
         PowerUpInformation.Instance.UpgradePU(0.1f, namePU);
         CoinData.Instance.PlusCoin(-costUpgrade);
         manager.ResetPUUpgradeUI();
