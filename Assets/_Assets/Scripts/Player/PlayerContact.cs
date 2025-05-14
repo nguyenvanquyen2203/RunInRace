@@ -11,14 +11,16 @@ public class PlayerContact : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obtance"))
         {
-            if (collision.GetContact(0).normal.z > -.5f) return; 
+            if (collision.GetContact(0).normal.z > -.5f) return;
             if (state.IsShield())
             {
                 AudioManager.Instance.PlaySFX("DestroyItem");
+                GameManager.Instance.ActiveExplostion(collision.transform.position);
                 collision.gameObject.SetActive(false);
-                return;
+                state.DisableShiled();
+                //return;
             }
-            state.Death();
+            else state.Death();
         }
     }
 }

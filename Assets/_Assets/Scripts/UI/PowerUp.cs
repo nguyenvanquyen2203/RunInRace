@@ -11,11 +11,6 @@ public class PowerUp : MonoBehaviour
     private float maxTimeActive;
     private float currentTimeActive;
     public bool isActive;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -63,4 +58,5 @@ public class PowerUp : MonoBehaviour
             gameObject.SetActive(true);
         }
     }
+    public string GetName() => powerUpName;
 }

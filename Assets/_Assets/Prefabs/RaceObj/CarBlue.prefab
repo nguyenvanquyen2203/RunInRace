@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528893149509384248}
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 0.5, y: 0.65, z: -1.5}
+  m_LocalPosition: {x: 0.5, y: 0.65, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,8 +46,8 @@ Light:
   m_Color: {r: 0.9815666, g: 1, b: 0.6396227, a: 1}
   m_Intensity: 7
   m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_SpotAngle: 60
+  m_InnerSpotAngle: 6
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4713547980346166087
 Transform:
   m_ObjectHideFlags: 0
@@ -332,7 +332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4404140724119125897}
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: -0.5, y: 0.65, z: -1.5}
+  m_LocalPosition: {x: -0.5, y: 0.65, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -353,8 +353,8 @@ Light:
   m_Color: {r: 0.9815666, g: 1, b: 0.6396227, a: 1}
   m_Intensity: 7
   m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_SpotAngle: 60
+  m_InnerSpotAngle: 6
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -388,7 +388,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2038
+    m_Bits: 4294967295
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -903,7 +903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8067331457571709768
 Transform:
   m_ObjectHideFlags: 0
@@ -1076,6 +1076,7 @@ GameObject:
   - component: {fileID: 7088533422311281102}
   - component: {fileID: 7571772788154387319}
   - component: {fileID: 7571772788154387318}
+  - component: {fileID: 7593169794178023798}
   m_Layer: 7
   m_Name: CarBlue
   m_TagString: Obtance
@@ -1129,7 +1130,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825cc101af7d8ac4ea589b53cdf8a22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setUp: {fileID: 0}
   speed: 5
+--- !u!114 &7593169794178023798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7571772788154387316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3bedd75fd0080c4b9adb8734436aeb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lights:
+  - {fileID: 4404140724119125897}
+  - {fileID: 528893149509384248}
 --- !u!1 &9201797161589513686
 GameObject:
   m_ObjectHideFlags: 0

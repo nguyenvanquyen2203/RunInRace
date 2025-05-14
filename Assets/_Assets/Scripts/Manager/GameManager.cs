@@ -7,6 +7,7 @@ public class GameManager : GameStateSubject
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
     public _MapManager mapManager;
+    public ParticleEffects pSE;
     [SerializeField] private float mapSpeed;
     [HideInInspector] public UnityEvent InitializeGameEvent;
     [HideInInspector] public UnityEvent ClearEvent;
@@ -51,7 +52,6 @@ public class GameManager : GameStateSubject
     }
     public void StartGame()
     {
-        Debug.Log("StartGame");
         StartGameAct();
         CloseHD();
     }
@@ -61,6 +61,7 @@ public class GameManager : GameStateSubject
         InitializeGameEvent?.Invoke();
         mapManager.StopRun();
         OpenHD();
+        GameModeManager.Instance.ChangeGameMode();
         //StartGame();
     }
     private void OpenHD()
@@ -74,6 +75,7 @@ public class GameManager : GameStateSubject
     public void ClearMap()
     {
         mapManager.ClearObservers();
+        PowerUpInformation.Instance.ClearPU();
         ClearEvent?.Invoke();
         coinMap = 0;
         coinText.text = coinMap.ToString();
@@ -87,5 +89,9 @@ public class GameManager : GameStateSubject
             currentTime = 0;
             SetMapSpeed(mapSpeed);
         }
+    }
+    public void ActiveExplostion(Vector3 pos)
+    {
+        pSE.ActiveEffect(pos, mapSpeed);
     }
 }
