@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -46,5 +45,9 @@ public class MapMove : MonoBehaviour, IObserver
     public void AddRaceObject(UnityAction action)
     {
         activeEvent.AddListener(action);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        activeEvent?.Invoke();
     }
 }
