@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class RaceObj : MonoBehaviour
 {
     [HideInInspector] public MapSetUp setUp;
-    private string nameRaceObj;
+    protected string nameRaceObj;
     public void SetName(string nameRaceObj)
     {
         this.nameRaceObj = nameRaceObj;
@@ -11,7 +11,7 @@ public abstract class RaceObj : MonoBehaviour
     public virtual void ActiveRaceObj(MapSetUp _setUp)
     {
         setUp = _setUp;
-        setUp.gameObject.GetComponent<MapController>().AddRaceObject(StartRaceObj);
+        //setUp.gameObject.GetComponent<MapController>().AddRaceObject(StartRaceObj);
         gameObject.SetActive(true);
     }
     public string GetName() => nameRaceObj;
@@ -19,5 +19,5 @@ public abstract class RaceObj : MonoBehaviour
     {
         setUp.DisableObj(this);
     }
-    public virtual void StartRaceObj() { }
+    //public virtual void StartRaceObj() { }
 }

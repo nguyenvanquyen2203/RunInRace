@@ -8,14 +8,14 @@ public class DynamicCar : RaceObj
     {
         transform.position += Vector3.back * _speed * Time.fixedDeltaTime;
     }
-    public override void StartRaceObj()
+    public void StartRaceObj()
     {
-        base.StartRaceObj();
         _speed = speed;
     }
     public override void ActiveRaceObj(MapSetUp _setUp)
     {
         base.ActiveRaceObj(_setUp);
+        setUp.gameObject.GetComponent<MapController>().AddRaceObject(StartRaceObj);
         _speed = 0;
     }
 }

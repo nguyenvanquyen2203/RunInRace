@@ -2,7 +2,7 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "OnFoot",
+            "name": "InGame",
             "id": "c5b40098-4dc1-493a-9222-463cad0db203",
             "actions": [
                 {
@@ -27,6 +27,15 @@
                     "name": "Slide",
                     "type": "Button",
                     "id": "3e565aaa-2625-4876-88eb-d6546ba268e8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "e43cb109-63a6-4f9b-bef7-c902cce63b18",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -119,6 +128,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Slide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "702003c9-9990-4507-aa73-5e35ea721454",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

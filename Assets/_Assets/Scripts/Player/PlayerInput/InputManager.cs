@@ -5,7 +5,7 @@ public class InputManager : MonoBehaviour, IGameStateObserver
     private static InputManager instance;
     public static InputManager Instance { get { return instance; } }
     private PlayerInput playerInput;
-    private PlayerInput.OnFootActions onFoot;
+    private PlayerInput.InGameActions inGame;
     private PlayerInput.MouseActions mouse;
     private PlayerInput.MenuActionActions menu;
     private PlayerController controller;
@@ -15,17 +15,18 @@ public class InputManager : MonoBehaviour, IGameStateObserver
         controller = GetComponent<PlayerController>();
         instance = this;
         playerInput = new PlayerInput();
-        onFoot = playerInput.OnFoot;
+        inGame = playerInput.InGame;
         mouse = playerInput.Mouse;
         menu = playerInput.MenuAction;
-        onFoot.Jump.performed += ctx => controller.ChangeState(controller.jumpState);
-        onFoot.Slide.performed += ctx => controller.Slide();
-        menu.StartGame.performed += ctx => GameManager.Instance.StartGame();
+        inGame.Jump.performed += ctx => controller.ChangeState(controller.jumpState);
+        inGame.Slide.performed += ctx => controller.Slide();
+        menu.StartGame.performed += ctx => GameManager.Instance.StartGame();    
     }
     void Start()
     {
+        inGame.PauseGame.performed += ctx => PauseMenu.Instance.PauseGameAct();
         GameManager.Instance.AddObserver(this);
-        onFoot.Disable();
+        inGame.Disable();
         mouse.Disable();
     }
     private void OnEnable()
@@ -36,19 +37,19 @@ public class InputManager : MonoBehaviour, IGameStateObserver
     }
     private void OnDisable()
     {
-        onFoot.Disable(); 
+        inGame.Disable(); 
         mouse.Disable();
     }
     public Vector2 GetMoveInput()
     {
-        return onFoot.Movement.ReadValue<Vector2>();
+        return inGame.Movement.ReadValue<Vector2>();
     }
     public Vector2 GetMouseInput() => mouse.Look.ReadValue<Vector2>();
 
     public void StartState()
     {
         Debug.Log("Start Input");
-        onFoot.Enable();
+        inGame.Enable();
         mouse.Enable();
         menu.Disable();
     }
@@ -56,7 +57,7 @@ public class InputManager : MonoBehaviour, IGameStateObserver
     public void OverState()
     {
         Debug.Log("Over Input");
-        onFoot.Disable();
+        inGame.Disable();
         mouse.Disable();
         menu.Enable();
     }

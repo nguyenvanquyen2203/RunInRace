@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setUp: {fileID: 0}
+  gOM: {fileID: 850153401819726016}
   coinValue: 1
 --- !u!135 &452484582345453159
 SphereCollider:
@@ -122,7 +123,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3712460f643bb3147889765d028e1c84, type: 2}
+  - {fileID: 2100000, guid: df6b1bb8113d21749b0d931a59e0e4e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

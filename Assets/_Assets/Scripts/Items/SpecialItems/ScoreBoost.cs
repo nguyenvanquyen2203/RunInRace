@@ -1,4 +1,4 @@
-public class ScoreBoost : RaceObj, IItem
+public class ScoreBoost : ItemObj, IItem
 {
     public void CollectEvent(PlayerCollection collector)
     {

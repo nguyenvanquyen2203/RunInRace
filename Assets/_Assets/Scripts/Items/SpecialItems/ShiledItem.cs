@@ -1,4 +1,4 @@
-public class ShiledItem : RaceObj, IItem
+public class ShiledItem : ItemObj, IItem
 {
     public void CollectEvent(PlayerCollection collector)
     {

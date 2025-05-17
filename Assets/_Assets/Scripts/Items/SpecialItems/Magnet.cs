@@ -1,4 +1,4 @@
-public class Magnet : RaceObj, IItem
+public class Magnet : ItemObj, IItem
 {
     public void CollectEvent(PlayerCollection collector)
     {

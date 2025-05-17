@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: MapInfor
   m_EditorClassIdentifier: 
   raceObjs:
-  - localPosition: {x: 0, y: 1, z: 2}
-    raceObjName: Coin
   - localPosition: {x: -2, y: 0, z: 0}
     raceObjName: Sign
   - localPosition: {x: 2, y: 0, z: 5}
     raceObjName: Sign
+  itemObjs:
+  - localPosition: {x: 0, y: 1, z: 2}
+    raceObjName: Coin
   - localPosition: {x: 0, y: 1, z: 4}
     raceObjName: Coin

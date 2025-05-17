@@ -21,11 +21,10 @@ public class MapController : MonoBehaviour, IMapObserver
     }
     private void FixedUpdate()
     {
-        //if (transform.position.z < -10f) DisableMap();
         transform.position += Vector3.back * mapSpeed * Time.fixedDeltaTime;
         if (transform.position.z < -10f)
         {
-            _MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 39f);
+            _MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 59f);
             DisableMap();
         }
     }
