@@ -1,5 +1,4 @@
-Link video Game: https://youtu.be/GM7xgnwhHdI
-RunInRace
+# RunInRace
 1️⃣ Giới thiệu
 
 RunInRace là tựa game 3D của tôi. Lấy ý tưởng từ tựa game nổi tiếng Subway Surfers. Đây là tựa game tôi áp dụng tất cả kiến thức 3D tôi đã học.
@@ -39,4 +38,4 @@ Endless Runner.
 3.4. Hệ thống AudioManager để quản lý nhạc nền (music) và SFXmusic
 ![image](https://github.com/user-attachments/assets/a6c859cd-354a-4e5f-8e6b-a337fd8a408f)
 
-🔗 Link video game: 
+🔗 Link video game: https://youtu.be/GM7xgnwhHdI
