@@ -10,6 +10,7 @@ Endless Runner.
 3.2. Hệ thống spawn object:
    Từ điển: Race Object: Các vật phẩm trên đường như các vật cản (Sign, Tonel, Car), các item (coin, buff item, ...), đèn đường.
    Dự án kết hợp các Design Pattern để tạo hệ thống SpawnObject hoàn chỉnh game Mode (DayMode và NightMode): Singleton, ObjectPooling để quản lý các Race Object, Observer Pattern để quan sát và sử lý các sự kiện khởi tạo, bắt đầu, dừng trò chơi.
+   
    Hình minh họa:
    ![image](https://github.com/user-attachments/assets/5ba203f5-a549-468b-8cee-f711cc03d9b0)
    ![image](https://github.com/user-attachments/assets/4b732425-2fe0-461e-b9ae-94b1c6ba45f5)
