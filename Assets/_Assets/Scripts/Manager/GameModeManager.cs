@@ -27,6 +27,7 @@ public class GameModeManager : MonoBehaviour
     {
         gameMode = ModeType.NightMode;
     }
+    public bool IsDay() => gameMode == ModeType.DayMode;
     public void ChangeGameMode()
     {
         if (gameMode == ModeType.NightMode)

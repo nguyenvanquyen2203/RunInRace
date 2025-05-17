@@ -120,6 +120,7 @@ public class RaceObjPoolCtrl : MonoBehaviour
                     itemObject.SetName(itemObj.nameGO);
                     itemObject.gameObject.SetActive(false);
                     Material material = itemObjs.Find(x => x.nameGO == nameItemObj).glowM;
+                    if (GameModeManager.Instance.IsDay()) material = itemObjs.Find(x => x.nameGO == nameItemObj).nonGlowM;
                     itemObject.SetMaterial(material);
                     value.Add(itemObject);
                 }
