@@ -17,6 +17,7 @@ public class ParticleEffects : MonoBehaviour
         speed = _speed;
         transform.position = pos;
         foreach (var pS in pSes) pS.ActiveParticle();
+        AudioManager.Instance.PlaySFX("Explosion");
     }
     public void AddParticle()
     {

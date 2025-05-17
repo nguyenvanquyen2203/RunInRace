@@ -22,7 +22,7 @@ public class MapController : MonoBehaviour, IMapObserver
     private void FixedUpdate()
     {
         transform.position += Vector3.back * mapSpeed * Time.fixedDeltaTime;
-        if (transform.position.z < -10f)
+        if (transform.position.z < -15f)
         {
             _MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 59f);
             DisableMap();
