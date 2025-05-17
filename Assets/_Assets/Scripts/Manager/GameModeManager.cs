@@ -27,6 +27,7 @@ public class GameModeManager : MonoBehaviour
     {
         gameMode = ModeType.NightMode;
     }
+    public bool IsDay() => gameMode == ModeType.DayMode;
     public void ChangeGameMode()
     {
         if (gameMode == ModeType.NightMode)
@@ -41,6 +42,7 @@ public class GameModeManager : MonoBehaviour
             mainCamera.clearFlags = CameraClearFlags.Skybox;
             mainCamera.backgroundColor = new Color(217, 60, 47, 0);
         }
+        RaceObjPoolCtrl.Instance.ChangeGlow(gameMode);
     }
     public ModeType GetCurrentMode() => gameMode;
 }

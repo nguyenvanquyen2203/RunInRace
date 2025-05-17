@@ -5,4 +5,5 @@ using UnityEngine;
 public class MapInfor : ScriptableObject
 {
     public List<RaceObjInfor> raceObjs;
+    public List<RaceObjInfor> itemObjs;
 }

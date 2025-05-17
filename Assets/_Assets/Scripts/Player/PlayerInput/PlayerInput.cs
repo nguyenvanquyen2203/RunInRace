@@ -24,7 +24,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""OnFoot"",
+            ""name"": ""InGame"",
             ""id"": ""c5b40098-4dc1-493a-9222-463cad0db203"",
             ""actions"": [
                 {
@@ -49,6 +49,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Slide"",
                     ""type"": ""Button"",
                     ""id"": ""3e565aaa-2625-4876-88eb-d6546ba268e8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""e43cb109-63a6-4f9b-bef7-c902cce63b18"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -143,6 +152,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Slide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""702003c9-9990-4507-aa73-5e35ea721454"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -205,11 +225,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // OnFoot
-        m_OnFoot = asset.FindActionMap("OnFoot", throwIfNotFound: true);
-        m_OnFoot_Movement = m_OnFoot.FindAction("Movement", throwIfNotFound: true);
-        m_OnFoot_Jump = m_OnFoot.FindAction("Jump", throwIfNotFound: true);
-        m_OnFoot_Slide = m_OnFoot.FindAction("Slide", throwIfNotFound: true);
+        // InGame
+        m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
+        m_InGame_Movement = m_InGame.FindAction("Movement", throwIfNotFound: true);
+        m_InGame_Jump = m_InGame.FindAction("Jump", throwIfNotFound: true);
+        m_InGame_Slide = m_InGame.FindAction("Slide", throwIfNotFound: true);
+        m_InGame_PauseGame = m_InGame.FindAction("PauseGame", throwIfNotFound: true);
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Look = m_Mouse.FindAction("Look", throwIfNotFound: true);
@@ -274,28 +295,30 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // OnFoot
-    private readonly InputActionMap m_OnFoot;
-    private List<IOnFootActions> m_OnFootActionsCallbackInterfaces = new List<IOnFootActions>();
-    private readonly InputAction m_OnFoot_Movement;
-    private readonly InputAction m_OnFoot_Jump;
-    private readonly InputAction m_OnFoot_Slide;
-    public struct OnFootActions
+    // InGame
+    private readonly InputActionMap m_InGame;
+    private List<IInGameActions> m_InGameActionsCallbackInterfaces = new List<IInGameActions>();
+    private readonly InputAction m_InGame_Movement;
+    private readonly InputAction m_InGame_Jump;
+    private readonly InputAction m_InGame_Slide;
+    private readonly InputAction m_InGame_PauseGame;
+    public struct InGameActions
     {
         private @PlayerInput m_Wrapper;
-        public OnFootActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_OnFoot_Movement;
-        public InputAction @Jump => m_Wrapper.m_OnFoot_Jump;
-        public InputAction @Slide => m_Wrapper.m_OnFoot_Slide;
-        public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
+        public InGameActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_InGame_Movement;
+        public InputAction @Jump => m_Wrapper.m_InGame_Jump;
+        public InputAction @Slide => m_Wrapper.m_InGame_Slide;
+        public InputAction @PauseGame => m_Wrapper.m_InGame_PauseGame;
+        public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(OnFootActions set) { return set.Get(); }
-        public void AddCallbacks(IOnFootActions instance)
+        public static implicit operator InputActionMap(InGameActions set) { return set.Get(); }
+        public void AddCallbacks(IInGameActions instance)
         {
-            if (instance == null || m_Wrapper.m_OnFootActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_OnFootActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_InGameActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InGameActionsCallbackInterfaces.Add(instance);
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
@@ -305,9 +328,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Slide.started += instance.OnSlide;
             @Slide.performed += instance.OnSlide;
             @Slide.canceled += instance.OnSlide;
+            @PauseGame.started += instance.OnPauseGame;
+            @PauseGame.performed += instance.OnPauseGame;
+            @PauseGame.canceled += instance.OnPauseGame;
         }
 
-        private void UnregisterCallbacks(IOnFootActions instance)
+        private void UnregisterCallbacks(IInGameActions instance)
         {
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
@@ -318,23 +344,26 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Slide.started -= instance.OnSlide;
             @Slide.performed -= instance.OnSlide;
             @Slide.canceled -= instance.OnSlide;
+            @PauseGame.started -= instance.OnPauseGame;
+            @PauseGame.performed -= instance.OnPauseGame;
+            @PauseGame.canceled -= instance.OnPauseGame;
         }
 
-        public void RemoveCallbacks(IOnFootActions instance)
+        public void RemoveCallbacks(IInGameActions instance)
         {
-            if (m_Wrapper.m_OnFootActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_InGameActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IOnFootActions instance)
+        public void SetCallbacks(IInGameActions instance)
         {
-            foreach (var item in m_Wrapper.m_OnFootActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_InGameActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_OnFootActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_InGameActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public OnFootActions @OnFoot => new OnFootActions(this);
+    public InGameActions @InGame => new InGameActions(this);
 
     // Mouse
     private readonly InputActionMap m_Mouse;
@@ -427,11 +456,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public MenuActionActions @MenuAction => new MenuActionActions(this);
-    public interface IOnFootActions
+    public interface IInGameActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
     public interface IMouseActions
     {

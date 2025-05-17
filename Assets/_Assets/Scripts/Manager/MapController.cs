@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MapController : MonoBehaviour, IMapObserver
 {
     private MapSetUp mapSetup;
     private float mapSpeed;
+    public UnityEvent activeEvent;
     private void Awake()
     {
         mapSetup = GetComponent<MapSetUp>();
@@ -19,11 +21,10 @@ public class MapController : MonoBehaviour, IMapObserver
     }
     private void FixedUpdate()
     {
-        //if (transform.position.z < -10f) DisableMap();
         transform.position += Vector3.back * mapSpeed * Time.fixedDeltaTime;
-        if (transform.position.z < -10f)
+        if (transform.position.z < -15f)
         {
-            _MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 39f);
+            _MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 59f);
             DisableMap();
         }
     }
@@ -33,6 +34,7 @@ public class MapController : MonoBehaviour, IMapObserver
         RaceObjPoolCtrl.Instance.AddGround(this);
         _MapManager.Instance.RemoveObserver(this);
         gameObject.SetActive(false);
+        activeEvent.RemoveAllListeners();
     }
     public void StopRun() => mapSpeed = 0f;
     public void SetSpeed(float newSpeed)
@@ -46,5 +48,13 @@ public class MapController : MonoBehaviour, IMapObserver
         mapSetup.DisableMap();
         RaceObjPoolCtrl.Instance.AddGround(this);
         gameObject.SetActive(false);
+    }
+    public void AddRaceObject(UnityAction action)
+    {
+        activeEvent.AddListener(action);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        activeEvent?.Invoke();
     }
 }

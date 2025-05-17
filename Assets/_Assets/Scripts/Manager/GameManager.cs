@@ -41,9 +41,9 @@ public class GameManager : GameStateSubject
     public void InitializeMap()
     {
         mapManager.SpawnDefaultMap(Vector3.zero);
-        mapManager.SpawnDefaultMap(Vector3.forward * 10);
         mapManager.SpawnDefaultMap(Vector3.forward * 20);
-        mapManager.SpawnDefaultMap(Vector3.forward * 30);
+        mapManager.SpawnDefaultMap(Vector3.forward * 40);
+        //mapManager.SpawnDefaultMap(Vector3.forward * 30);
     }
     public void GetCoin()
     {
@@ -57,11 +57,11 @@ public class GameManager : GameStateSubject
     }
     public void ResetMap()
     {
+        GameModeManager.Instance.ChangeGameMode();
         AudioManager.Instance.PlayMusic("GameMusic");
         InitializeGameEvent?.Invoke();
         mapManager.StopRun();
         OpenHD();
-        GameModeManager.Instance.ChangeGameMode();
         //StartGame();
     }
     private void OpenHD()

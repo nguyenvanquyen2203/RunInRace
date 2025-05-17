@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
         if (isGrounded) ChangeState(slideState);
     }
     private void IntinializeState() {
+        gameObject.layer = LayerMask.NameToLayer("Player");
         currentAnimState = "Idle";
         transform.position = originalPos;
         ChangeAnimState(currentAnimState, 0f);
@@ -110,5 +111,6 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     public void Death()
     {
         ChangeState(dieState);
+        gameObject.layer = LayerMask.NameToLayer("Invisible");
     }
 }

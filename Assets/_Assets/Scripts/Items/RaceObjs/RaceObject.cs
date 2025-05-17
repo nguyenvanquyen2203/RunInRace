@@ -1,8 +1,10 @@
-using System;
-[Serializable]
-public class RaceObject
+public class InRaceObject
 {
-    public RaceObj go;
     public string nameGO;
     public int numberPool;
+}
+[System.Serializable]
+public class RaceObject : InRaceObject
+{
+    public RaceObj go;
 }

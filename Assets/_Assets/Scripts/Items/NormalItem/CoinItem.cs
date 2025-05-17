@@ -1,4 +1,4 @@
-public class CoinItem : RaceObj, IItem
+public class CoinItem : ItemObj, IItem
 {
     public int coinValue;
     public void CollectEvent(PlayerCollection collector)

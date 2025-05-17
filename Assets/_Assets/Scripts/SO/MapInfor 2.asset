@@ -14,18 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raceObjs:
   - localPosition: {x: -2, y: 1, z: 0}
-    raceObjName: HighSign
-  - localPosition: {x: -2, y: 1, z: -2}
-    raceObjName: Magnet
+    raceObjName: Tunel
+  - localPosition: {x: -5.5, y: 0, z: 0}
+    raceObjName: StreetLight
+  - localPosition: {x: 5.5, y: 0, z: 0}
+    raceObjName: StreetLight
+  itemObjs:
+  - localPosition: {x: 0, y: 1, z: 0}
+    raceObjName: Shield
   - localPosition: {x: -2, y: 1, z: 2}
     raceObjName: Shield
   - localPosition: {x: -2, y: 1, z: -5}
     raceObjName: ScoreBoost
   - localPosition: {x: -2, y: 1, z: 5}
     raceObjName: Coin
-  - localPosition: {x: 0, y: 1, z: 0}
-    raceObjName: Shield
-  - localPosition: {x: -5, y: 1, z: 0}
-    raceObjName: StreetLight
-  - localPosition: {x: 5, y: 1, z: 0}
-    raceObjName: StreetLight
+  - localPosition: {x: -2, y: 1, z: -2}
+    raceObjName: Magnet
