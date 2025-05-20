@@ -17,14 +17,14 @@ public class MapController : MonoBehaviour, IMapObserver
         gameObject.SetActive(true);
         transform.localPosition = pos;
         mapSetup.ActiveMap(mapInfor);
-        _MapManager.Instance.AddObserver(this);
+        MapManager.Instance.AddObserver(this);
     }
     private void FixedUpdate()
     {
         transform.position += Vector3.back * mapSpeed * Time.fixedDeltaTime;
         if (transform.position.z < -15f)
         {
-            _MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 59f);
+            MapManager.Instance.SpawnMap(transform.position + Vector3.forward * 59f);
             DisableMap();
         }
     }
@@ -32,7 +32,7 @@ public class MapController : MonoBehaviour, IMapObserver
     {
         mapSetup.DisableMap();
         RaceObjPoolCtrl.Instance.AddGround(this);
-        _MapManager.Instance.RemoveObserver(this);
+        MapManager.Instance.RemoveObserver(this);
         gameObject.SetActive(false);
         activeEvent.RemoveAllListeners();
     }

@@ -6,7 +6,7 @@ public class GameManager : GameStateSubject
 {
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
-    public _MapManager mapManager;
+    public MapManager mapManager;
     public ParticleEffects pSE;
     [SerializeField] private float mapSpeed;
     [HideInInspector] public UnityEvent InitializeGameEvent;

@@ -26,19 +26,22 @@ public class InputManager : MonoBehaviour, IGameStateObserver
     {
         inGame.PauseGame.performed += ctx => PauseMenu.Instance.PauseGameAct();
         GameManager.Instance.AddObserver(this);
+        GameManager.Instance.InitializeGameEvent.AddListener(OverState);
         inGame.Disable();
         mouse.Disable();
+        menu.Disable();
     }
     private void OnEnable()
     {
         /*onFoot.Enable();
         mouse.Enable();*/
-        menu.Enable();
+        //menu.Enable();
     }
     private void OnDisable()
     {
         inGame.Disable(); 
         mouse.Disable();
+        menu.Disable();
     }
     public Vector2 GetMoveInput()
     {
