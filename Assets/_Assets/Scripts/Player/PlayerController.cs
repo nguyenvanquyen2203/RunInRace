@@ -1,10 +1,9 @@
 using UnityEngine;
-
 public class PlayerController : MonoBehaviour, IGameStateObserver
 {
     public p_State state;
     public Transform playerBody;
-    private Rigidbody rb;
+    public Rigidbody rb;
     private Animator anim;
     private string currentAnimState;
     public LayerMask groundLayer;
@@ -13,6 +12,7 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     public RunState runState;
     public JumpState jumpState;
     public SlideState slideState;
+    public FlyState flyState;
     public DieState dieState;
     private Vector3 originalPos;
     public enum OnTriggerEvent
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
         runState = new RunState(this);
         jumpState = new JumpState(this);  
         slideState = new SlideState(this);
+        flyState = new FlyState(this);
         dieState = new DieState(this);
         GameManager.Instance.AddObserver(this);
         GameManager.Instance.ClearEvent.AddListener(IntinializeState);
