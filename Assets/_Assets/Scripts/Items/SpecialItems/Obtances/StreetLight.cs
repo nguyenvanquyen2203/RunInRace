@@ -7,7 +7,7 @@ public class StreetLight : RaceObj
     }
     public void StartRaceObj()
     {
-        lightSw.ActiveLight();
+        if (!GameModeManager.Instance.IsDay()) lightSw.ActiveLight();
     }
     public override void ActiveRaceObj(MapSetUp _setUp)
     {

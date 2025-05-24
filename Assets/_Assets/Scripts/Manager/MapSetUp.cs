@@ -31,6 +31,12 @@ public class MapSetUp : MonoBehaviour
             raceObj.gameObject.SetActive(false);
         }
         raceObjs.Clear();
+        foreach (var raceObj in itemObjs)
+        {
+            RaceObjPoolCtrl.Instance.AddPool(raceObj);
+            raceObj.gameObject.SetActive(false);
+        }
+        itemObjs.Clear();
     }
     public void DisableObj(RaceObj obj)
     {

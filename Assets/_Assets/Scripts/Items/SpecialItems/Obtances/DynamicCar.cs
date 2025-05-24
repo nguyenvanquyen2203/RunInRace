@@ -16,7 +16,8 @@ public class DynamicCar : RaceObj
     public void StartRaceObj()
     {
         _speed = speed;
-        lightSw.ActiveLight();
+        if (GameModeManager.Instance.IsDay()) AudioManager.Instance.PlaySFX("CarHorn");
+        else lightSw.ActiveLight();
     }
     public override void ActiveRaceObj(MapSetUp _setUp)
     {

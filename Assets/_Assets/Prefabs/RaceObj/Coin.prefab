@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setUp: {fileID: 0}
-  gOM: {fileID: 0}
-  coinValue: 0
+  gOM: {fileID: 4012936942001718807}
+  coinValue: 1
 --- !u!135 &2332547422010361486
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour, IGameStateObserver
         inGame = playerInput.InGame;
         mouse = playerInput.Mouse;
         menu = playerInput.MenuAction;
-        inGame.Jump.performed += ctx => controller.ChangeState(controller.jumpState);
+        inGame.Jump.performed += ctx => controller.ChangeJumpState();
         inGame.Slide.performed += ctx => controller.Slide();
         menu.StartGame.performed += ctx => GameManager.Instance.StartGame();    
     }

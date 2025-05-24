@@ -2,13 +2,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IGameStateObserver
 {
     public p_State state;
-    public Transform playerBody;
-    public Rigidbody rb;
+    //public Transform playerBody;
+    [HideInInspector] public Rigidbody rb;
     private Animator anim;
     private string currentAnimState;
     public LayerMask groundLayer;
     public pPlayer playerInfo;
     private bool isGrounded;
+    public IdleState idleState;
     public RunState runState;
     public JumpState jumpState;
     public SlideState slideState;
@@ -27,12 +28,15 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     }
     private void Start()
     {
-        IntinializeState();
+        #region Initialize State
+        idleState = new IdleState(this);
         runState = new RunState(this);
         jumpState = new JumpState(this);  
         slideState = new SlideState(this);
         flyState = new FlyState(this);
         dieState = new DieState(this);
+        #endregion
+        IntinializeState();
         GameManager.Instance.AddObserver(this);
         GameManager.Instance.ClearEvent.AddListener(IntinializeState);
         GetComponent<PlayerState>().deathEvt.AddListener(Death);
@@ -40,13 +44,13 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     public void ChangeState(p_State newState)
     {
         if (state != null) state.ExitState();
+        if (state == newState) return;
         state = newState;
         state.EnterState();
     }
     void Update()
     {
         isGrounded = IsGround();
-        Move();
         state?.Update();
     }
     private void FixedUpdate()
@@ -57,32 +61,22 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     {
         Vector2 input = InputManager.Instance.GetMoveInput();
         rb.velocity = new Vector3(input.x * playerInfo.speed, rb.velocity.y, 0f);
-        RotatePlayer(input.x);
+        //Rotate Player
+        transform.rotation = Quaternion.Euler(Vector3.up * (input.x * 45f));
     }
-    private void RotatePlayer(float xMove)
-    {
-        transform.rotation = Quaternion.Euler(Vector3.up * (xMove * 45f));
-    }
-    private bool IsGround()
-    {
-        return Physics.Raycast(transform.position + 0.75f * Vector3.up, Vector3.down, 0.8f, groundLayer) && rb.velocity.y <= 0f;
-    }
+    private bool IsGround() => Physics.Raycast(transform.position + 0.75f * Vector3.up, Vector3.down, 0.8f, groundLayer) && rb.velocity.y <= 0f;
     public bool IsGrounded() => isGrounded;
-    public void ChangeAnimState(string newState, float crossTime)
+    public void ChangeAnimState(string newState, float crossTime = 0f)
     {
         //if (currentAnimState == newState) return; 
         currentAnimState = newState;
         anim.CrossFade(currentAnimState, crossTime);
     }
-    public void AddForce(Vector3 forceDir, float forceValue)
+    public void ChangeJumpState()
     {
-        rb.AddForce(forceDir * forceValue, ForceMode.Impulse);
+        if (state == slideState || isGrounded) ChangeState(jumpState);
     }
-    public void Jump()
-    {
-        if (isGrounded) rb.AddForce(Vector3.up * playerInfo.jumpForce, ForceMode.Impulse);
-    }
-    public Vector3 GetVelocity() => rb.velocity;
+    public void Jump() => rb.AddForce(Vector3.up * playerInfo.jumpForce, ForceMode.Impulse);
     public void OnTriggerEventAct(OnTriggerEvent evt)
     {
         state.TriggerEvent(evt);
@@ -92,26 +86,26 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
         if (isGrounded) ChangeState(slideState);
     }
     private void IntinializeState() {
-        gameObject.layer = LayerMask.NameToLayer("Player");
-        currentAnimState = "Idle";
-        transform.position = originalPos;
-        ChangeAnimState(currentAnimState, 0f);
-        rb.useGravity = false;
+        state = idleState;
+        state.EnterState();
     }
 
-    public void StartState()
+    /*public void StartState()
     {
         rb.useGravity = true;
+        state = runState;
+        state.EnterState();
+    }*/
+    public void StartState()
+    {
+        //rb.useGravity = true;
         ChangeState(runState);
     }
+    public void ResetPosition() => transform.position = originalPos;
 
     public void OverState()
     {
         
     }
-    public void Death()
-    {
-        ChangeState(dieState);
-        gameObject.layer = LayerMask.NameToLayer("Invisible");
-    }
+    public void Death() => ChangeState(dieState);
 }

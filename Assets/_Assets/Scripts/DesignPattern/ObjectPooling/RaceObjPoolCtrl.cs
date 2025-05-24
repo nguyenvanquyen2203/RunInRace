@@ -169,7 +169,6 @@ public class RaceObjPoolCtrl : MonoBehaviour
     } 
     public void ChangeGlow(GameModeManager.ModeType modeType)
     {
-        Debug.Log(modeType);
         if (modeType == GameModeManager.ModeType.DayMode)
         {
             foreach (var items in itemPools)

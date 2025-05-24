@@ -19,7 +19,7 @@ public class RunState : p_State
 
     public override void FixedUpdate()
     {
-        //throw new System.NotImplementedException();
+        
     }
 
     public override void TriggerEvent(PlayerController.OnTriggerEvent evt)
@@ -29,6 +29,6 @@ public class RunState : p_State
 
     public override void Update()
     {
-        //throw new System.NotImplementedException();
+        controller.Move();
     }
 }

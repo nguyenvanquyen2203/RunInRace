@@ -5,7 +5,7 @@ public class MapController : MonoBehaviour, IMapObserver
 {
     private MapSetUp mapSetup;
     private float mapSpeed;
-    public UnityEvent activeEvent;
+    [HideInInspector] public UnityEvent activeEvent;
     private void Awake()
     {
         mapSetup = GetComponent<MapSetUp>();
