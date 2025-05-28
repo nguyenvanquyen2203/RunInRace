@@ -6,6 +6,14 @@ public class RunState : p_State
     {
         
     }
+
+    public override void ActionEvent(PlayerController.OnActionEvent evt)
+    {
+        if (!controller.IsGrounded()) return;
+        if (evt == PlayerController.OnActionEvent.Jump) controller.ChangeState(controller.jumpState);
+        if (evt == PlayerController.OnActionEvent.Slide) controller.ChangeState(controller.slideState);
+    }
+
     public override void EnterState()
     {
         Debug.Log("Enter RunState");
@@ -19,7 +27,7 @@ public class RunState : p_State
 
     public override void FixedUpdate()
     {
-        //throw new System.NotImplementedException();
+        
     }
 
     public override void TriggerEvent(PlayerController.OnTriggerEvent evt)
@@ -29,6 +37,6 @@ public class RunState : p_State
 
     public override void Update()
     {
-        //throw new System.NotImplementedException();
+        controller.Move();
     }
 }

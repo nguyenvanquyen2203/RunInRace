@@ -49,7 +49,7 @@ public class CoinManager : MonoBehaviour
             }
         }
         if (magnetActive > 0) magnetActive -= Time.fixedDeltaTime;
-        else magnet.gameObject.SetActive(false);
+        else DisableMagnet();
         #endregion
     }
     public void Register(CoinItem coin)
@@ -67,6 +67,16 @@ public class CoinManager : MonoBehaviour
     }
     public void SetTimeMagnet(float timeUp)
     {
+        if (timeUp <= 0f) return;
         magnetActive = timeUp;
+        GameManager.Instance.ClearEvent.AddListener(DisableMagnet);
+    }
+    public void DisableMagnet()
+    {
+        GameManager.Instance.ClearEvent.RemoveListener(DisableMagnet);
+        magnetActive = 0f;
+        coinsMagnet.Clear();
+        magnet.gameObject.SetActive(false);
+        PowerUpInformation.Instance.CancelPU("Magnet");
     }
 }

@@ -7,13 +7,14 @@ public class LightSwitch : MonoBehaviour
     public List<GameObject> lights;
     private void OnEnable()
     {
-        if (GameModeManager.Instance.GetCurrentMode() == GameModeManager.ModeType.NightMode)
-        {
-            foreach (var light in lights) light.SetActive(true);
-        } 
-        else
-        {
-            foreach (var light in lights) light.SetActive(false);
-        }
+        //foreach (var light in lights) light.SetActive(false);
+    }
+    public void ActiveLight()
+    {
+        foreach (var light in lights) light.SetActive(true);
+    }
+    private void OnDisable()
+    {
+        foreach (var light in lights) light.SetActive(false);
     }
 }

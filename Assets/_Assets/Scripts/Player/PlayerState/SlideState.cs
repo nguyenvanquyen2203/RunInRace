@@ -33,4 +33,9 @@ public class SlideState : p_State
     {
         controller.ChangeState(controller.runState);
     }
+
+    public override void ActionEvent(PlayerController.OnActionEvent evt)
+    {
+        if (evt == PlayerController.OnActionEvent.Jump) controller.ChangeState(controller.jumpState);
+    }
 }

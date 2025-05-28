@@ -18,30 +18,34 @@ public class MapSetUp : MonoBehaviour
         {
             raceObjs.Add(racePool.ActiveRaceObject(raceObj.raceObjName, raceObj.localPosition, transform, this));
         }
+        if (PlayerState.Instance.IsRocket()) return;
         foreach (var raceObj in mapInfor.itemObjs)
         {
             itemObjs.Add(racePool.ActiveItemObject(raceObj.raceObjName, raceObj.localPosition, transform, this));
         }
     }
+    public void AddItem(ItemObj item) => itemObjs.Add(item);
     public void DisableMap()
     {
         foreach (var raceObj in raceObjs)
         {
             RaceObjPoolCtrl.Instance.AddPool(raceObj);
-            raceObj.gameObject.SetActive(false);
         }
         raceObjs.Clear();
+        foreach (var raceObj in itemObjs)
+        {
+            RaceObjPoolCtrl.Instance.AddPool(raceObj);
+        }
+        itemObjs.Clear();
     }
     public void DisableObj(RaceObj obj)
     {
         RaceObjPoolCtrl.Instance.AddPool(obj);
         raceObjs.Remove(obj);
-        obj.gameObject.SetActive(false);
     }
     public void DisableObj(ItemObj obj)
     {
         RaceObjPoolCtrl.Instance.AddPool(obj);
         itemObjs.Remove(obj);
-        obj.gameObject.SetActive(false);
     }
 }

@@ -39,7 +39,7 @@ public class PowerUp : MonoBehaviour
     }
     public void UnactivePU()
     {
-        PowerUpInformation.Instance.CancelPU(this);
+        //PowerUpInformation.Instance.CancelPU(this);
         //PowerUpManager.Instance.CancelPU(this);
     }
     public (Sprite, string, float, float) GetPUUI()

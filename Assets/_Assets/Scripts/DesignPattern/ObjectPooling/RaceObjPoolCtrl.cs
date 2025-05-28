@@ -148,6 +148,7 @@ public class RaceObjPoolCtrl : MonoBehaviour
         if (!racePools.ContainsKey(raceObj.GetName())) Debug.LogError($"Exist race object with name {raceObj.GetName()}, can't add race Obj to pool");
         else
         {
+            raceObj.gameObject.SetActive(false);
             racePools[raceObj.GetName()].Enqueue(raceObj);
         }
     }
@@ -156,6 +157,7 @@ public class RaceObjPoolCtrl : MonoBehaviour
         if (!itemPools.ContainsKey(itemObj.GetName())) Debug.LogError($"Exist race object with name {itemObj.GetName()}, can't add race Obj to pool");
         else
         {
+            itemObj.gameObject.SetActive(false);
             itemPools[itemObj.GetName()].Add(itemObj);
         }
     }
@@ -169,7 +171,6 @@ public class RaceObjPoolCtrl : MonoBehaviour
     } 
     public void ChangeGlow(GameModeManager.ModeType modeType)
     {
-        Debug.Log(modeType);
         if (modeType == GameModeManager.ModeType.DayMode)
         {
             foreach (var items in itemPools)

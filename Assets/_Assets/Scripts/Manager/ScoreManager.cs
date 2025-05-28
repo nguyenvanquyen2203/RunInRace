@@ -33,16 +33,13 @@ public class ScoreManager : MonoBehaviour, IGameStateObserver
     {
         if (stopCount) return;
         if (timeBoostScore > 0) timeBoostScore -= Time.fixedDeltaTime;
-        else
-        {
-            multiScore = 1;
-            scoreBoost.SetActive(false);
-        }
+        else DisableScoreBoost();
         score += Time.fixedDeltaTime * multiScore;
         scoreTxt.text = ((int)score).ToString();
     }
     public void BoostScore(float timeActive)
     {
+        GameManager.Instance.ClearEvent.AddListener(DisableScoreBoost);
         scoreBoost.SetActive(true);
         timeBoostScore = timeActive;
         multiScore = 2;
@@ -70,5 +67,13 @@ public class ScoreManager : MonoBehaviour, IGameStateObserver
     {
         score = 0;
         scoreTxt.text = ((int)score).ToString();
+    }
+    public void DisableScoreBoost()
+    {
+        GameManager.Instance.ClearEvent.AddListener(DisableScoreBoost);
+        PowerUpInformation.Instance.CancelPU("ScoreBoost");
+        scoreBoost.SetActive(false);
+        timeBoostScore = 0f;
+        multiScore = 1;
     }
 }

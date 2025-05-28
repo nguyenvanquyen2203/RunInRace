@@ -19,3 +19,5 @@ MonoBehaviour:
     img: {fileID: 21300000, guid: 32253480e2b1e854ca1ff348fe256679, type: 3}
   - name: ScoreBoost
     img: {fileID: 21300000, guid: d4f6593e45ef23f49b2fd5307b0f1d13, type: 3}
+  - name: Rocket
+    img: {fileID: 21300000, guid: f6f16aaa171a73948bc3fcd69d5eacfb, type: 3}

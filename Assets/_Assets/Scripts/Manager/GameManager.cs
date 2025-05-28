@@ -6,9 +6,10 @@ public class GameManager : GameStateSubject
 {
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
-    public _MapManager mapManager;
+    public MapManager mapManager;
     public ParticleEffects pSE;
     [SerializeField] private float mapSpeed;
+    [SerializeField] private float currentMapSpeed;
     [HideInInspector] public UnityEvent InitializeGameEvent;
     [HideInInspector] public UnityEvent ClearEvent;
     public TextMeshProUGUI coinText;
@@ -22,8 +23,9 @@ public class GameManager : GameStateSubject
     }
     private void Start()
     {
+        currentMapSpeed = mapSpeed;
         currentTime = 0f;
-        SetMapSpeed(mapSpeed);
+        SetMapSpeed(currentMapSpeed);
         InitializeGameEvent.AddListener(InitializeMap);
         PlayerState.Instance.deathEvt.AddListener(DeathAction);
     }
@@ -34,8 +36,6 @@ public class GameManager : GameStateSubject
     public void DeathAction()
     {
         OverGameAct();
-        //mapManager.StopRun();
-        //DeathEvent?.Invoke();
         CoinData.Instance.PlusCoin(coinMap);
     }
     public void InitializeMap()
@@ -57,6 +57,7 @@ public class GameManager : GameStateSubject
     }
     public void ResetMap()
     {
+        currentMapSpeed = mapSpeed;
         GameModeManager.Instance.ChangeGameMode();
         AudioManager.Instance.PlayMusic("GameMusic");
         InitializeGameEvent?.Invoke();
@@ -75,7 +76,6 @@ public class GameManager : GameStateSubject
     public void ClearMap()
     {
         mapManager.ClearObservers();
-        PowerUpInformation.Instance.ClearPU();
         ClearEvent?.Invoke();
         coinMap = 0;
         coinText.text = coinMap.ToString();
@@ -85,13 +85,14 @@ public class GameManager : GameStateSubject
         currentTime += Time.fixedDeltaTime;
         if (currentTime >= timeSpeedUp)
         {
-            mapSpeed++;
+            currentMapSpeed++;
             currentTime = 0;
-            SetMapSpeed(mapSpeed);
+            SetMapSpeed(currentMapSpeed);
         }
     }
     public void ActiveExplostion(Vector3 pos)
     {
-        pSE.ActiveEffect(pos, mapSpeed);
+        pSE.ActiveEffect(pos, currentMapSpeed);
     }
+    public float GetSpeed() => currentMapSpeed;
 }
