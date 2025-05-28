@@ -7,6 +7,11 @@ public class JumpState : p_State
         
     }
 
+    public override void ActionEvent(PlayerController.OnActionEvent evt)
+    {
+        
+    }
+
     public override void EnterState()
     {
         Debug.Log("Enter Jump State");

@@ -12,4 +12,5 @@ public abstract class p_State
     public abstract void Update();
     public abstract void FixedUpdate();
     public abstract void TriggerEvent(PlayerController.OnTriggerEvent evt);
+    public abstract void ActionEvent(PlayerController.OnActionEvent evt);
 }

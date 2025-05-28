@@ -11,36 +11,24 @@ public class Shield : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (activeTime <= 0) DisableShield();
+        if (activeTime <= 0) playerState.DisableShiled();
         transform.position = playerState.transform.position + Vector3.up * 0.75f;
         activeTime -= Time.fixedDeltaTime;
     }
     public void ActiveShield(float uptime)
     {
+        GameManager.Instance.ClearEvent.AddListener(() => { playerState.DisableShiled(); });
         transform.position = playerState.transform.position + Vector3.up * 0.75f;
         gameObject.SetActive(true);
         activeTime = uptime;
-        playerState.GetShiled();
+        playerState.GetShield();
         PowerUpInformation.Instance.ActivePowerUp("Shield");
     }
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (!collision.gameObject.CompareTag("Obtance")) return;
-        if (collision.GetContact(0).normal.z > -.5f) return;
-        if (activeTime > 0f)
-        {
-            AudioManager.Instance.PlaySFX("DestroyItem");
-            GameManager.Instance.ActiveExplostion(collision.transform.position);
-            collision.gameObject.SetActive(false);
-            DisableShield();
-        }
-    }*/
     public void DisableShield()
     {
-        //playerState.DisableShiled();
+        GameManager.Instance.ClearEvent.RemoveListener(DisableShield);
         activeTime = 0;
         gameObject.SetActive(false);
         PowerUpInformation.Instance.CancelPU("Shield");
-        return;
     }
 }

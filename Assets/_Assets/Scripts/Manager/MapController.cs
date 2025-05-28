@@ -44,7 +44,6 @@ public class MapController : MonoBehaviour, IMapObserver
 
     public void Clear()
     {
-        Debug.LogWarning("Disable Map " + gameObject.name);
         mapSetup.DisableMap();
         RaceObjPoolCtrl.Instance.AddGround(this);
         gameObject.SetActive(false);

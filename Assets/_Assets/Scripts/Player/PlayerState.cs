@@ -7,7 +7,9 @@ public class PlayerState : MonoBehaviour
     public static PlayerState Instance {  get { return instance; } }
     [HideInInspector] public UnityEvent deathEvt;
     public Shield shield;
+    public RocketItem rocket;
     private bool isShield = false;
+    private bool isRocket = false;
     private void Awake()
     {
         instance = this;
@@ -17,11 +19,17 @@ public class PlayerState : MonoBehaviour
         InputManager.Instance.enabled = false;
         deathEvt?.Invoke();
     }
-    public void GetShiled() => isShield = true;
+    public void GetShield() => isShield = true;
+    public void GetRocket() => isRocket = true;
     public void DisableShiled()
     {
         isShield = false;
         shield.DisableShield();
     }
+    public void DisableRocket()
+    {
+        isRocket = false;
+    }
+    public bool IsRocket() => isRocket;
     public bool IsShield() => isShield;
 }

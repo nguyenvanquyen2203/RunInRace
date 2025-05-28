@@ -18,8 +18,8 @@ public class InputManager : MonoBehaviour, IGameStateObserver
         inGame = playerInput.InGame;
         mouse = playerInput.Mouse;
         menu = playerInput.MenuAction;
-        inGame.Jump.performed += ctx => controller.ChangeJumpState();
-        inGame.Slide.performed += ctx => controller.Slide();
+        inGame.Jump.performed += ctx => controller.OnActionEventAct(PlayerController.OnActionEvent.Jump);
+        inGame.Slide.performed += ctx => controller.OnActionEventAct(PlayerController.OnActionEvent.Slide);
         menu.StartGame.performed += ctx => GameManager.Instance.StartGame();    
     }
     void Start()
@@ -51,7 +51,6 @@ public class InputManager : MonoBehaviour, IGameStateObserver
 
     public void StartState()
     {
-        Debug.Log("Start Input");
         inGame.Enable();
         mouse.Enable();
         menu.Disable();
@@ -59,7 +58,6 @@ public class InputManager : MonoBehaviour, IGameStateObserver
 
     public void OverState()
     {
-        Debug.Log("Over Input");
         inGame.Disable();
         mouse.Disable();
         menu.Enable();

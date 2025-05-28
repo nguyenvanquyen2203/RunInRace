@@ -5,9 +5,11 @@ public class PlayerCollection : MonoBehaviour
     public ParticleSystem coinCollection;
     public MagnetZone magnetZone;
     public Shield shield;
+    public RocketItem rocket;
     private float shieldTime;
     private float magnetTime;
     private float scoreTime;
+    private float rocketTime;
     private void Start()
     {
         GameManager.Instance.InitializeGameEvent.AddListener(ResetGame);
@@ -31,18 +33,14 @@ public class PlayerCollection : MonoBehaviour
         magnetZone.gameObject.SetActive(true);
         CoinManager.Instance.SetTimeMagnet(magnetTime);
     }
-    public void CollectShield()
-    {
-        shield.ActiveShield(shieldTime);
-    }
-    public void CollectScoreBoost()
-    {
-        ScoreManager.Instance.BoostScore(scoreTime);
-    }
+    public void CollectShield() => shield.ActiveShield(shieldTime);
+    public void CollectRocket() => rocket.ActiveRocket(rocketTime);
+    public void CollectScoreBoost() => ScoreManager.Instance.BoostScore(scoreTime);
     public void ResetGame()
     {
         shieldTime = PowerUpInformation.Instance.GetPU("Shield").timeActive;
         magnetTime = PowerUpInformation.Instance.GetPU("Magnet").timeActive;
         scoreTime = PowerUpInformation.Instance.GetPU("ScoreBoost").timeActive;
+        rocketTime = PowerUpInformation.Instance.GetPU("Rocket").timeActive;
     }
 }

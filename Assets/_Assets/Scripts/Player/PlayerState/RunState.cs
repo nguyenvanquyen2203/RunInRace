@@ -6,6 +6,14 @@ public class RunState : p_State
     {
         
     }
+
+    public override void ActionEvent(PlayerController.OnActionEvent evt)
+    {
+        if (!controller.IsGrounded()) return;
+        if (evt == PlayerController.OnActionEvent.Jump) controller.ChangeState(controller.jumpState);
+        if (evt == PlayerController.OnActionEvent.Slide) controller.ChangeState(controller.slideState);
+    }
+
     public override void EnterState()
     {
         Debug.Log("Enter RunState");

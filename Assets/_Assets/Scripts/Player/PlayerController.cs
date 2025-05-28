@@ -14,11 +14,18 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     public JumpState jumpState;
     public SlideState slideState;
     public FlyState flyState;
+    public FallState fallState;
     public DieState dieState;
     private Vector3 originalPos;
     public enum OnTriggerEvent
     {
         EndSlide
+    }
+    public enum OnActionEvent
+    {
+        Slide,
+        Jump,
+        EndFlying
     }
     private void Awake()
     {
@@ -34,6 +41,7 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
         jumpState = new JumpState(this);  
         slideState = new SlideState(this);
         flyState = new FlyState(this);
+        fallState = new FallState(this);
         dieState = new DieState(this);
         #endregion
         IntinializeState();
@@ -51,6 +59,11 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     void Update()
     {
         isGrounded = IsGround();
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            ChangeState(flyState);
+            Invoke(nameof(Fall), 5f);
+        }
         state?.Update();
     }
     private void FixedUpdate()
@@ -72,40 +85,21 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
         currentAnimState = newState;
         anim.CrossFade(currentAnimState, crossTime);
     }
-    public void ChangeJumpState()
-    {
-        if (state == slideState || isGrounded) ChangeState(jumpState);
-    }
     public void Jump() => rb.AddForce(Vector3.up * playerInfo.jumpForce, ForceMode.Impulse);
-    public void OnTriggerEventAct(OnTriggerEvent evt)
-    {
-        state.TriggerEvent(evt);
-    }
-    public void Slide()
-    {
-        if (isGrounded) ChangeState(slideState);
-    }
-    private void IntinializeState() {
-        state = idleState;
-        state.EnterState();
-    }
-
-    /*public void StartState()
-    {
-        rb.useGravity = true;
-        state = runState;
-        state.EnterState();
-    }*/
-    public void StartState()
-    {
-        //rb.useGravity = true;
-        ChangeState(runState);
-    }
+    public void OnTriggerEventAct(OnTriggerEvent evt) => state.TriggerEvent(evt);
+    public void OnActionEventAct(OnActionEvent evt) => state.ActionEvent(evt);
+    private void IntinializeState() => ChangeState(idleState);
+    public void StartState() => ChangeState(runState);
     public void ResetPosition() => transform.position = originalPos;
 
     public void OverState()
     {
         
     }
+    private void Fall()
+    {
+        OnActionEventAct(PlayerController.OnActionEvent.EndFlying);
+    }
     public void Death() => ChangeState(dieState);
+    public void ResetForce() => rb.velocity = Vector3.zero;
 }

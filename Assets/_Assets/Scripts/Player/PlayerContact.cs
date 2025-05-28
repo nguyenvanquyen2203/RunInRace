@@ -18,7 +18,6 @@ public class PlayerContact : MonoBehaviour
                 GameManager.Instance.ActiveExplostion(collision.transform.position);
                 collision.gameObject.SetActive(false);
                 state.DisableShiled();
-                //return;
             }
             else state.Death();
         }

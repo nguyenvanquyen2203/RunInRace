@@ -1,23 +1,22 @@
-using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class FlyState : p_State
+public class FallState : p_State
 {
-    public FlyState(PlayerController controller) : base(controller)
+    public FallState(PlayerController ctrl) : base(ctrl)
     {
-        
-    }
 
+    }
     public override void ActionEvent(PlayerController.OnActionEvent evt)
     {
-        if (evt == PlayerController.OnActionEvent.EndFlying) controller.ChangeState(controller.fallState);
+        throw new System.NotImplementedException();
     }
 
     public override void EnterState()
     {
-        controller.ResetForce();
-        controller.ChangeAnimState("Flying", 1f);
-        controller.rb.useGravity = false;
-        controller.transform.DOMoveY(5, 1f);
+        controller.ChangeAnimState("Fall", .1f);
+        controller.rb.useGravity = true;
     }
 
     public override void ExitState()
@@ -38,5 +37,6 @@ public class FlyState : p_State
     public override void Update()
     {
         controller.Move();
+        if (controller.IsGrounded()) controller.ChangeState(controller.runState);
     }
 }
