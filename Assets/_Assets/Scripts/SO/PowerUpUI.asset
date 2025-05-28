@@ -16,7 +16,7 @@ MonoBehaviour:
   - name: Shield
     img: {fileID: 21300000, guid: 84cf391ebc3953a4084ce69d09bccb49, type: 3}
   - name: Magnet
-    img: {fileID: 21300000, guid: 32253480e2b1e854ca1ff348fe256679, type: 3}
+    img: {fileID: 21300000, guid: 7419999754d010441bc5b7d926efd525, type: 3}
   - name: ScoreBoost
     img: {fileID: 21300000, guid: d4f6593e45ef23f49b2fd5307b0f1d13, type: 3}
   - name: Rocket
