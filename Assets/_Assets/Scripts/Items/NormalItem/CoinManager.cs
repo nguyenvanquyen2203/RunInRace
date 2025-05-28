@@ -48,8 +48,11 @@ public class CoinManager : MonoBehaviour
                 i--;
             }
         }
-        if (magnetActive > 0) magnetActive -= Time.fixedDeltaTime;
-        else DisableMagnet();
+        if (magnetActive > 0)
+        {
+            magnetActive -= Time.fixedDeltaTime;
+            if (magnetActive <= 0f) DisableMagnet();
+        } 
         #endregion
     }
     public void Register(CoinItem coin)

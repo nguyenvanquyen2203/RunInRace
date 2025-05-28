@@ -20380,7 +20380,9 @@ MonoBehaviour:
     go: {fileID: 1094652831412648153, guid: d6d85ae05f2861e428b6db3a185e25a0, type: 3}
     nonGlowM: {fileID: 2100000, guid: 1984d9c473b61504280b55c04102b379, type: 2}
     glowM: {fileID: 2100000, guid: 1984d9c473b61504280b55c04102b379, type: 2}
-  ground: {fileID: 6770602758127019543, guid: d6c92bd5570796541ab9a5173ef93080, type: 3}
+  grounds:
+  - {fileID: 6770602758127019543, guid: 1f72393973867d64a81366b79ca9efac, type: 3}
+  - {fileID: 6770602758127019543, guid: d6c92bd5570796541ab9a5173ef93080, type: 3}
 --- !u!4 &1441642431
 Transform:
   m_ObjectHideFlags: 0
@@ -21040,9 +21042,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1847122853}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ClearMap
+      - m_Target: {fileID: 1847122855}
+        m_TargetAssemblyTypeName: GameModeManager, Assembly-CSharp
+        m_MethodName: SetNightMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21052,9 +21054,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1847122855}
-        m_TargetAssemblyTypeName: GameModeManager, Assembly-CSharp
-        m_MethodName: SetNightMode
+      - m_Target: {fileID: 1847122853}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ClearMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23627,6 +23629,7 @@ MonoBehaviour:
   mapManager: {fileID: 77306801}
   pSE: {fileID: 5472511166184662809}
   mapSpeed: 5
+  currentMapSpeed: 0
   InitializeGameEvent:
     m_PersistentCalls:
       m_Calls: []

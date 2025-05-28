@@ -20,7 +20,7 @@ public class IdleState : p_State
         controller.gameObject.layer = LayerMask.NameToLayer("Player");
         controller.ChangeAnimState("Idle");
         controller.ResetPosition();
-        //controller.rb.useGravity = false;
+        controller.rb.useGravity = true;
     }
 
     public override void ExitState()

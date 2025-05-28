@@ -1,7 +1,7 @@
 public class StreetLight : RaceObj
 {
     private LightSwitch lightSw;
-    private void Start()
+    private void Awake()
     {
         lightSw = GetComponent<LightSwitch>();
     }

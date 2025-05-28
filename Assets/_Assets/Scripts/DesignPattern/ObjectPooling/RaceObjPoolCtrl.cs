@@ -9,11 +9,11 @@ public class RaceObjPoolCtrl : MonoBehaviour
     public static RaceObjPoolCtrl Instance { get { return instance; } }
     public List<RaceObject> raceObjs;
     public List<ItemObject> itemObjs;
-    public MapController ground;
+    public List<MapController> grounds;
     //public int numberPool;
     private Dictionary<string, Queue<RaceObj>> racePools = new Dictionary<string, Queue<RaceObj>>();
     private Dictionary<string, List<ItemObj>> itemPools = new Dictionary<string, List<ItemObj>>();
-    private Queue<MapController> grounds = new Queue<MapController>();
+    private List<Queue<MapController>> groundPools = new List<Queue<MapController>>();
     // Start is called before the first frame update
     private void Awake()
     {
@@ -26,12 +26,19 @@ public class RaceObjPoolCtrl : MonoBehaviour
         {
             CreateItemPool(itemObj);
         }
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < grounds.Count; i++)
         {
-            MapController map = Instantiate(ground, transform);
-            map.gameObject.SetActive(false);
-            map.gameObject.name = i.ToString();
-            grounds.Enqueue(map);
+            Queue<MapController> temp = new Queue<MapController>();
+            for (int j = 0; j < 5; j++)
+            {
+                MapController map = Instantiate(grounds[i], transform);
+                map.SetIndex(i);
+                map.gameObject.SetActive(false);
+                map.gameObject.name = i.ToString();
+                temp.Enqueue(map);
+            }
+            groundPools.Add(temp);
+
         }
     }
     private RaceObj GetRaceObject(string nameRaceObj)
@@ -161,13 +168,13 @@ public class RaceObjPoolCtrl : MonoBehaviour
             itemPools[itemObj.GetName()].Add(itemObj);
         }
     }
-    public void AddGround(MapController _map)
+    public void AddGround(MapController _map, int index)
     {
-        grounds.Enqueue(_map);
+        groundPools[index].Enqueue(_map);
     }
     public MapController ActiveGround()
     {
-        return grounds.Dequeue();
+        return groundPools[Random.Range(0,2)].Dequeue();
     } 
     public void ChangeGlow(GameModeManager.ModeType modeType)
     {

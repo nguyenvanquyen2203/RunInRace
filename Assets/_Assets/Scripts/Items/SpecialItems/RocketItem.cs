@@ -31,6 +31,7 @@ public class RocketItem : MonoBehaviour
     }
     public void DisableRocket()
     {
+        Debug.Log("Disable Rocket");
         GameManager.Instance.ClearEvent.RemoveListener(DisableRocket);
         airCoin.gameObject.SetActive(false);
         activeTime = 0;

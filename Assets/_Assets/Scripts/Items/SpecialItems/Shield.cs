@@ -26,6 +26,7 @@ public class Shield : MonoBehaviour
     }
     public void DisableShield()
     {
+        Debug.Log("Disable Shield");
         GameManager.Instance.ClearEvent.RemoveListener(DisableShield);
         activeTime = 0;
         gameObject.SetActive(false);

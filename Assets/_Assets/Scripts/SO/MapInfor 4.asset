@@ -15,7 +15,7 @@ MonoBehaviour:
   raceObjs:
   - localPosition: {x: -2, y: 0, z: 0}
     raceObjName: Sign
-  - localPosition: {x: 2, y: 0, z: 5}
+  - localPosition: {x: 2, y: 0, z: 8}
     raceObjName: Car
   - localPosition: {x: 5.5, y: 0, z: 0}
     raceObjName: StreetLight

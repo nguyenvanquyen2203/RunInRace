@@ -53,6 +53,7 @@ public class GameManager : GameStateSubject
     public void StartGame()
     {
         StartGameAct();
+        currentMapSpeed = mapSpeed;
         CloseHD();
     }
     public void ResetMap()

@@ -13,7 +13,7 @@ public class GameModeManager : MonoBehaviour
         DayMode,
         NightMode
     }
-    private ModeType gameMode;
+    private ModeType gameMode = ModeType.DayMode;
     // Start is called before the first frame update
     private void Awake()
     {
