@@ -7,7 +7,6 @@ public class PlayerState : MonoBehaviour
     public static PlayerState Instance {  get { return instance; } }
     [HideInInspector] public UnityEvent deathEvt;
     public Shield shield;
-    public RocketItem rocket;
     private bool isShield = false;
     private bool isRocket = false;
     private void Awake()

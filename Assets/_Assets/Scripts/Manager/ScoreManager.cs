@@ -53,7 +53,7 @@ public class ScoreManager : MonoBehaviour, IGameStateObserver
     public void StartState()
     {
         ResetScore();
-        stopCount = true;
+        stopCount = false;
     }
 
     public void OverState()

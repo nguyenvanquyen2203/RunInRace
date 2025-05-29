@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerCollection : MonoBehaviour
 {
     public ParticleSystem coinCollection;
-    public MagnetZone magnetZone;
     public Shield shield;
     public RocketItem rocket;
+    public MagnetZone groundZone;
+    public MagnetZone airZone;
     private float shieldTime;
     private float magnetTime;
     private float scoreTime;
@@ -30,11 +31,19 @@ public class PlayerCollection : MonoBehaviour
     }
     public void CollectMagnet()
     {
-        magnetZone.gameObject.SetActive(true);
+        groundZone.gameObject.SetActive(true);
         CoinManager.Instance.SetTimeMagnet(magnetTime);
     }
     public void CollectShield() => shield.ActiveShield(shieldTime);
-    public void CollectRocket() => rocket.ActiveRocket(rocketTime);
+    public void CollectRocket()
+    {
+        rocket.ActiveRocket(rocketTime);
+        if (CoinManager.Instance.IsMagnet())
+        {
+            groundZone.gameObject.SetActive(false);
+            airZone.gameObject.SetActive(true);
+        }
+    } 
     public void CollectScoreBoost() => ScoreManager.Instance.BoostScore(scoreTime);
     public void ResetGame()
     {
