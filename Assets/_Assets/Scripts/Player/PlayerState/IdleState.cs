@@ -11,7 +11,7 @@ public class IdleState : p_State
 
     public override void ActionEvent(PlayerController.OnActionEvent evt)
     {
-        Debug.LogError("Error in Idle State");
+        Debug.LogError("Error in Idle State " + evt.ToString());
         //throw new System.NotImplementedException();
     }
 

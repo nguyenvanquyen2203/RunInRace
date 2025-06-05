@@ -11,7 +11,6 @@ public abstract class RaceObj : MonoBehaviour
     public virtual void ActiveRaceObj(MapSetUp _setUp)
     {
         setUp = _setUp;
-        //setUp.gameObject.GetComponent<MapController>().AddRaceObject(StartRaceObj);
         gameObject.SetActive(true);
     }
     public string GetName() => nameRaceObj;
@@ -19,5 +18,4 @@ public abstract class RaceObj : MonoBehaviour
     {
         setUp.DisableObj(this);
     }
-    //public virtual void StartRaceObj() { }
 }

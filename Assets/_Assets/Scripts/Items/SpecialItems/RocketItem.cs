@@ -31,12 +31,10 @@ public class RocketItem : MonoBehaviour
     }
     public void DisableRocket()
     {
-        Debug.Log("Disable Rocket");
         GameManager.Instance.ClearEvent.RemoveListener(DisableRocket);
         airCoin.gameObject.SetActive(false);
         activeTime = 0;
         controller.OnActionEventAct(PlayerController.OnActionEvent.EndFlying);
-        //playerState.DisableRocket();
         gameObject.SetActive(false);
         PowerUpInformation.Instance.CancelPU("Rocket");
     }

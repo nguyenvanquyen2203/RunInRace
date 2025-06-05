@@ -11,8 +11,7 @@ public class SlideState : p_State
 
     public override void EnterState()
     {
-        AudioManager.Instance.PlaySFX("Jump");
-        Debug.Log("Enter Slide State");
+        AudioManager.Instance.PlaySFX("Slide");
         controller.ChangeAnimState("Slide", .1f);
     }
 

@@ -59,11 +59,6 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     void Update()
     {
         isGrounded = IsGround();
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            ChangeState(flyState);
-            Invoke(nameof(Fall), 5f);
-        }
         state?.Update();
     }
     private void FixedUpdate()
@@ -95,10 +90,6 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     public void OverState()
     {
         
-    }
-    private void Fall()
-    {
-        OnActionEventAct(PlayerController.OnActionEvent.EndFlying);
     }
     public void Death() => ChangeState(dieState);
     public void ResetForce() => rb.velocity = Vector3.zero;

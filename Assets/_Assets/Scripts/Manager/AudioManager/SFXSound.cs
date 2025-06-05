@@ -11,9 +11,7 @@ public class SFXSound : Sound
         src.loop = false;
         src.playOnAwake = false;
     }
-    public void PlayMusic()
-    {
-        src.Play();
-    }
+    public void PlayMusic() => src.Play();
+    public void PauseMusic() => src.Pause();
     public void SetVolumn(float _volumn) => src.volume = _volumn * volumn;
 }

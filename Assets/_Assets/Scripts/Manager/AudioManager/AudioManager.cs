@@ -56,4 +56,8 @@ public class AudioManager : MonoBehaviour
         if (type == Audio_Type.Music) return audioData.musicVolumn;
         return audioData.SFXVolumn;
     }
+    public void PauseSFX()
+    {
+        foreach (var sound in SFXSounds) sound.PauseMusic();
+    }
 }

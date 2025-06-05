@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Building_Gas Station
+  m_Name: Gas Station
   m_Shader: {fileID: -6465566751694194690, guid: 1377675101b0b11479885b3e2bce7d5a, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -43,6 +43,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _CurvedStrength: -0.005
+    - _CurvedXStrength: 0
+    - _CurvedYStrength: -0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _TillingScale: 1

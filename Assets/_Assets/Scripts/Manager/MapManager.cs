@@ -14,19 +14,29 @@ public class MapManager : MapSubject, IGameStateObserver
     {
         GameManager.Instance.AddObserver(this);
     }
+    private Transform lastGround;
     //Spawn Random Map
-    public void SpawnMap(Vector3 spawnPos)
+    public void SpawnMap()
     {
         MapController map = RaceObjPoolCtrl.Instance.ActiveGround();
-        map.ActiveMap(spawnPos, mapInfor[Random.Range(0, mapInfor.Count)], speed);
+        map.ActiveMap(lastGround.position + Vector3.forward * 20f, mapInfor[Random.Range(0, mapInfor.Count)], speed);
+        lastGround = map.transform;
     }
-    public void SpawnDefaultMap(Vector3 spawnPos)
+    public void SpawnDefaultMap()
     {
-        MapController map = RaceObjPoolCtrl.Instance.ActiveGround();
-        map.ActiveMap(spawnPos, mapInfor[mapInfor.Count - 1], speed);
-        map.activeEvent?.Invoke();
+        for (int i = 0; i <= 2; i++)
+        {
+            MapController map = RaceObjPoolCtrl.Instance.ActiveGround();
+            map.ActiveMap(Vector3.forward * i * 20f, mapInfor[mapInfor.Count - 1], speed);
+            map.activeEvent?.Invoke();
+            lastGround = map.transform;
+        }
     }
-    public void SetMapSpeed(float newSpeed) => speed = newSpeed;
+    public void SetMapSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+        SetSpeed(speed);
+    } 
     public void StartRun()
     {
         SetSpeed(speed);

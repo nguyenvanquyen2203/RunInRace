@@ -174,7 +174,7 @@ public class RaceObjPoolCtrl : MonoBehaviour
     }
     public MapController ActiveGround()
     {
-        return groundPools[Random.Range(0,2)].Dequeue();
+        return groundPools[Random.Range(0,grounds.Count)].Dequeue();
     } 
     public void ChangeGlow(GameModeManager.ModeType modeType)
     {

@@ -29,6 +29,7 @@ public class PauseMenu : MonoBehaviour
     {
         isPause = true;
         Time.timeScale = 0;
+        AudioManager.Instance.PauseSFX();
     }
     private void ResumeGame() => mainMenu.HideMenu(transform);
     private void PauseGame() => mainMenu.ShowMenu(transform);

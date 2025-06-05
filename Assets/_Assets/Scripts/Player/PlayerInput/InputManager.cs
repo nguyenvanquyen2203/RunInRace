@@ -33,15 +33,7 @@ public class InputManager : MonoBehaviour, IGameStateObserver
     }
     private void OnEnable()
     {
-        /*onFoot.Enable();
-        mouse.Enable();*/
-        //menu.Enable();
-    }
-    private void OnDisable()
-    {
-        inGame.Disable(); 
-        mouse.Disable();
-        menu.Disable();
+        OverState();
     }
     public Vector2 GetMoveInput()
     {
@@ -57,6 +49,12 @@ public class InputManager : MonoBehaviour, IGameStateObserver
     }
 
     public void OverState()
+    {
+        inGame.Disable();
+        mouse.Disable();
+        menu.Disable();
+    }
+    public void ReadyGame()
     {
         inGame.Disable();
         mouse.Disable();

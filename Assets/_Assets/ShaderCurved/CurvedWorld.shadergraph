@@ -11,6 +11,9 @@
         },
         {
             "m_Id": "c67bc67904fe4493b4ccb90da8733e26"
+        },
+        {
+            "m_Id": "49795cfea6674f49bed2404f0c0aa673"
         }
     ],
     "m_Keywords": [],
@@ -89,6 +92,9 @@
         },
         {
             "m_Id": "86d872c0b1d54336870ea0d3afe28160"
+        },
+        {
+            "m_Id": "8b9398d3939a45f6b31e7c39eeac886e"
         }
     ],
     "m_GroupDatas": [],
@@ -131,9 +137,9 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "3adec2eabc1b4a9f828c4f7c658fa2e5"
+                    "m_Id": "44a4d8f2ca8b4234adf214dc17ca8472"
                 },
-                "m_SlotId": 0
+                "m_SlotId": 2
             }
         },
         {
@@ -145,9 +151,9 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "44a4d8f2ca8b4234adf214dc17ca8472"
+                    "m_Id": "b4b6680317364fbaa9632315845217fe"
                 },
-                "m_SlotId": 2
+                "m_SlotId": 1
             }
         },
         {
@@ -173,9 +179,9 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "b4b6680317364fbaa9632315845217fe"
+                    "m_Id": "3adec2eabc1b4a9f828c4f7c658fa2e5"
                 },
-                "m_SlotId": 1
+                "m_SlotId": 0
             }
         },
         {
@@ -216,6 +222,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "426ed55d8c1a4e13acaf2ed5e4f35077"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "8b9398d3939a45f6b31e7c39eeac886e"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "44a4d8f2ca8b4234adf214dc17ca8472"
                 },
                 "m_SlotId": 1
             }
@@ -485,10 +505,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -596.7120361328125,
-            "y": 131.1920623779297,
-            "width": 0.0,
-            "height": 0.0
+            "x": -596.800048828125,
+            "y": 131.1999969482422,
+            "width": 166.4000244140625,
+            "height": 33.600006103515628
         }
     },
     "m_Slots": [
@@ -757,10 +777,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -355.2000427246094,
-            "y": 140.80001831054688,
-            "width": 125.60002136230469,
-            "height": 117.60000610351563
+            "x": -152.00001525878907,
+            "y": 200.00001525878907,
+            "width": 125.5999526977539,
+            "height": 117.59999084472656
         }
     },
     "m_Slots": [
@@ -792,7 +812,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "3f3df756ddd548359be987a56ae32667",
     "m_Id": 0,
-    "m_DisplayName": "CurvedStrength",
+    "m_DisplayName": "CurvedYStrength",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -891,9 +911,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -130.40005493164063,
-            "y": 136.00001525878907,
-            "width": 127.99998474121094,
+            "x": -348.0000305175781,
+            "y": 131.1999969482422,
+            "width": 128.0,
             "height": 124.80000305175781
         }
     },
@@ -952,6 +972,33 @@
     },
     "m_Labels": [],
     "m_Space": 0
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "49795cfea6674f49bed2404f0c0aa673",
+    "m_Guid": {
+        "m_GuidSerialized": "e33d701e-9c13-45f1-9f19-6c11baf9fec9"
+    },
+    "m_Name": "CurvedXStrength",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "CurvedXStrength",
+    "m_DefaultReferenceName": "_CurvedXStrength",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {
@@ -1600,6 +1647,56 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "8b6aad6b0bff4d458d6fa2b868967092",
+    "m_Id": 0,
+    "m_DisplayName": "CurvedXStrength",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "8b9398d3939a45f6b31e7c39eeac886e",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -596.800048828125,
+            "y": 200.00001525878907,
+            "width": 165.60000610351563,
+            "height": 33.59999084472656
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "8b6aad6b0bff4d458d6fa2b868967092"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "49795cfea6674f49bed2404f0c0aa673"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "8fc2dab3341b4b669a74d8e2eb0fa8a4",
     "m_Id": 3,
@@ -2101,10 +2198,10 @@
     "m_Guid": {
         "m_GuidSerialized": "8f4f9dfc-7b0c-48e7-bb2f-0c55916298e4"
     },
-    "m_Name": "CurvedStrength",
+    "m_Name": "CurvedYStrength",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "CurvedStrength",
-    "m_DefaultReferenceName": "_CurvedStrength",
+    "m_RefNameGeneratedByDisplayName": "CurvedYStrength",
+    "m_DefaultReferenceName": "_CurvedYStrength",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -2151,6 +2248,9 @@
     "m_ObjectId": "d27f8ea0069e4da9802d1c82e4599610",
     "m_Name": "",
     "m_ChildObjectList": [
+        {
+            "m_Id": "49795cfea6674f49bed2404f0c0aa673"
+        },
         {
             "m_Id": "ce0b3c3d93214b1089a7c4b346528dea"
         },

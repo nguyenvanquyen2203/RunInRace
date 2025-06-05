@@ -75,7 +75,6 @@ public class ScoreManager : MonoBehaviour, IGameStateObserver
     }
     public void DisableScoreBoost()
     {
-        Debug.LogWarning("Disable Score");
         GameManager.Instance.ClearEvent.AddListener(DisableScoreBoost);
         scoreBoost.SetActive(false);
         stopCount = true;

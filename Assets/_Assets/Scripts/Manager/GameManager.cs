@@ -36,14 +36,12 @@ public class GameManager : GameStateSubject
     public void DeathAction()
     {
         OverGameAct();
+        AudioManager.Instance.PauseSFX();
         CoinData.Instance.PlusCoin(coinMap);
     }
     public void InitializeMap()
     {
-        mapManager.SpawnDefaultMap(Vector3.zero);
-        mapManager.SpawnDefaultMap(Vector3.forward * 20);
-        mapManager.SpawnDefaultMap(Vector3.forward * 40);
-        //mapManager.SpawnDefaultMap(Vector3.forward * 30);
+        mapManager.SpawnDefaultMap();
     }
     public void GetCoin()
     {
@@ -63,8 +61,8 @@ public class GameManager : GameStateSubject
         AudioManager.Instance.PlayMusic("GameMusic");
         InitializeGameEvent?.Invoke();
         mapManager.StopRun();
+        InputManager.Instance.ReadyGame();
         OpenHD();
-        //StartGame();
     }
     private void OpenHD()
     {

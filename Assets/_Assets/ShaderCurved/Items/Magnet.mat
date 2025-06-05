@@ -89,6 +89,8 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _CurvedStrength: -0.005
+    - _CurvedXStrength: 0
+    - _CurvedYStrength: -0.005
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1

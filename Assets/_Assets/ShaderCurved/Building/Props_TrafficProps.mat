@@ -43,6 +43,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _CurvedStrength: -0.005
+    - _CurvedXStrength: 0
+    - _CurvedYStrength: -0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _TillingScale: 1
