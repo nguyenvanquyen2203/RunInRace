@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: MapInfor 2
   m_EditorClassIdentifier: 
   raceObjs:
-  - localPosition: {x: -2, y: 1, z: -5}
+  - localPosition: {x: -2, y: 0.9, z: -5}
     raceObjName: Tunel
   - localPosition: {x: -5.5, y: 0, z: -5}
     raceObjName: StreetLight
   - localPosition: {x: 5.5, y: 0, z: -5}
     raceObjName: StreetLight
-  - localPosition: {x: 2, y: 0, z: -5}
+  - localPosition: {x: 2, y: -0.1, z: -5}
     raceObjName: Bus
   itemObjs:
   - localPosition: {x: 0, y: 1, z: -5}
