@@ -37,6 +37,7 @@ public class FallState : p_State
     public override void Update()
     {
         controller.Move();
+        controller.RotatePlayer();
         if (controller.IsGrounded()) controller.ChangeState(controller.runState);
     }
 }

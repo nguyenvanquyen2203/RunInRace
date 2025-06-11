@@ -37,6 +37,7 @@ public class JumpState : p_State
     public override void Update()
     {
         controller.Move();
+        controller.RotatePlayer();
         if (controller.rb.velocity.y < -0.5f) 
         {
             if (controller.IsGrounded()) controller.ChangeState(controller.runState);

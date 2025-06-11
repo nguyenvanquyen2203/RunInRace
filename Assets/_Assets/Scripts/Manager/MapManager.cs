@@ -15,12 +15,17 @@ public class MapManager : MapSubject, IGameStateObserver
         GameManager.Instance.AddObserver(this);
     }
     private Transform lastGround;
+    private bool isFlyMap;
+    private int countMap;
     //Spawn Random Map
     public void SpawnMap()
     {
+        countMap--;
+        if (countMap >= 3 && !isFlyMap) return;
         MapController map = RaceObjPoolCtrl.Instance.ActiveGround();
         map.ActiveMap(lastGround.position + Vector3.forward * 20f, mapInfor[Random.Range(0, mapInfor.Count)], speed);
         lastGround = map.transform;
+        countMap++;
     }
     public void SpawnDefaultMap()
     {
@@ -31,6 +36,7 @@ public class MapManager : MapSubject, IGameStateObserver
             map.activeEvent?.Invoke();
             lastGround = map.transform;
         }
+        countMap = 3;
     }
     public void SetMapSpeed(float newSpeed)
     {
@@ -54,5 +60,15 @@ public class MapManager : MapSubject, IGameStateObserver
     public void OverState()
     {
         StopRun();
+    }
+    public void SpawnFlyMap()
+    {
+        isFlyMap = true;
+        countMap++;
+        SpawnMap();
+    }
+    public void DisableFly()
+    {
+        isFlyMap = false;
     }
 }

@@ -37,5 +37,6 @@ public class RunState : p_State
     public override void Update()
     {
         controller.Move();
+        controller.RotatePlayer();
     }
 }

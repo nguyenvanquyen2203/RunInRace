@@ -1,1 +1,1 @@
-{"powerUps":[{"namePU":"Shield","timeActive":7.0,"upgradeCost":30},{"namePU":"Magnet","timeActive":6.599999904632568,"upgradeCost":22},{"namePU":"ScoreBoost","timeActive":7.0,"upgradeCost":28},{"namePU":"Rocket","timeActive":10.699999809265137,"upgradeCost":24}]}
+{"powerUps":[{"namePU":"Shield","timeActive":7.099999904632568,"upgradeCost":33},{"namePU":"Magnet","timeActive":6.599999904632568,"upgradeCost":22},{"namePU":"ScoreBoost","timeActive":7.0,"upgradeCost":28},{"namePU":"Rocket","timeActive":10.699999809265137,"upgradeCost":24}]}

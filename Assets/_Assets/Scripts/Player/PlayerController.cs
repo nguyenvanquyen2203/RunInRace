@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class PlayerController : MonoBehaviour, IGameStateObserver
 {
@@ -17,6 +18,9 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     public FallState fallState;
     public DieState dieState;
     private Vector3 originalPos;
+    private CapsuleCollider _collider;
+    private ColliderStatus originalCollider;
+    private Vector2 input;
     public enum OnTriggerEvent
     {
         EndSlide
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     }
     private void Awake()
     {
+        _collider = GetComponent<CapsuleCollider>();
         originalPos = transform.position;
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
@@ -48,7 +53,21 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
         GameManager.Instance.AddObserver(this);
         GameManager.Instance.ClearEvent.AddListener(IntinializeState);
         GetComponent<PlayerState>().deathEvt.AddListener(Death);
+        SaveColliderInfo();
     }
+
+    private void SaveColliderInfo()
+    {
+        originalCollider = new ColliderStatus(_collider.center, _collider.radius, _collider.height);
+    }
+    public void ResetCollider()
+    {
+        transform.position = new Vector3(transform.position.x, 0f, 0f);
+        _collider.center = originalCollider.centerPos;
+        _collider.radius = originalCollider.radius;
+        _collider.height = originalCollider.height;
+    }
+
     public void ChangeState(p_State newState)
     {
         if (state != null) state.ExitState();
@@ -67,12 +86,27 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     }
     public void Move()
     {
-        Vector2 input = InputManager.Instance.GetMoveInput();
+        input = InputManager.Instance.GetMoveInput();
         rb.velocity = new Vector3(input.x * playerInfo.speed, rb.velocity.y, 0f);
         //Rotate Player
-        transform.rotation = Quaternion.Euler(Vector3.up * (input.x * 45f));
+        //transform.rotation = Quaternion.Euler(Vector3.up * (input.x * 45f));
     }
     private bool IsGround() => Physics.Raycast(transform.position + 0.75f * Vector3.up, Vector3.down, 0.8f, groundLayer) && rb.velocity.y <= 0f;
+    public void RotatePlayer() => transform.rotation = Quaternion.Euler(Vector3.up * (input.x * 45f));
+    public void FlyRotate(bool isFly = true)
+    {
+        if (!isFly)
+        {
+            transform.rotation = Quaternion.Euler(Vector3.zero);
+            return;
+        }
+        Vector3 rotation = Vector3.zero;
+        if (input.x > 0f) rotation = new Vector3(0f, 0f, -45f);
+        if (input.x < 0f) rotation = new Vector3(0f, 0f, 45f);
+        if (input.x == 0f) rotation = new Vector3(0f, 0f, 0f);
+        Quaternion targetRotation = Quaternion.Euler(rotation);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, .03f);
+    }
     public bool IsGrounded() => isGrounded;
     public void ChangeAnimState(string newState, float crossTime = 0f)
     {
@@ -93,4 +127,16 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     }
     public void Death() => ChangeState(dieState);
     public void ResetForce() => rb.velocity = Vector3.zero;
+}
+public class ColliderStatus
+{
+    public Vector3 centerPos;
+    public float radius;
+    public float height;
+    public ColliderStatus(Vector3 _centerPos, float _radius, float _height)
+    {
+        centerPos = _centerPos;
+        radius = _radius;
+        height = _height;
+    }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SlideState : p_State
 {
+    Vector3 slidePos;
     public SlideState(PlayerController ctrl) : base(ctrl)
     {
         
@@ -11,12 +12,16 @@ public class SlideState : p_State
 
     public override void EnterState()
     {
+        slidePos = controller.transform.position;
         AudioManager.Instance.PlaySFX("Slide");
         controller.ChangeAnimState("Slide", .1f);
     }
 
     public override void ExitState()
     {
+        controller.transform.position = new Vector3(controller.transform.position.x, slidePos.y, slidePos.z);
+        controller.ResetCollider();
+
     }
 
     public override void FixedUpdate()
