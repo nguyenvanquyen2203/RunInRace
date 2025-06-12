@@ -17,12 +17,14 @@ public class GameManager : GameStateSubject
     public float timeSpeedUp;
     private int coinMap;
     private float currentTime;
+    private bool isGameStart;
     private void Awake()
     {
         instance = this;
     }
     private void Start()
     {
+        isGameStart = false;
         currentMapSpeed = mapSpeed;
         currentTime = 0f;
         SetMapSpeed(currentMapSpeed);
@@ -36,6 +38,7 @@ public class GameManager : GameStateSubject
     public void DeathAction()
     {
         OverGameAct();
+        isGameStart = false;
         AudioManager.Instance.PauseSFX();
         CoinData.Instance.PlusCoin(coinMap);
     }
@@ -51,6 +54,8 @@ public class GameManager : GameStateSubject
     public void StartGame()
     {
         StartGameAct();
+        isGameStart = true;
+        currentTime = 0f;
         currentMapSpeed = mapSpeed;
         CloseHD();
     }
@@ -81,6 +86,7 @@ public class GameManager : GameStateSubject
     }
     private void FixedUpdate()
     {
+        if (!isGameStart) return;
         currentTime += Time.fixedDeltaTime;
         if (currentTime >= timeSpeedUp)
         {

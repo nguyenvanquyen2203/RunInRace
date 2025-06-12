@@ -115,7 +115,11 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
         anim.CrossFade(currentAnimState, crossTime);
     }
     public void Jump() => rb.AddForce(Vector3.up * playerInfo.jumpForce, ForceMode.Impulse);
-    public void OnTriggerEventAct(OnTriggerEvent evt) => state.TriggerEvent(evt);
+    public void OnTriggerEventAct(OnTriggerEvent evt)
+    {
+        if (state == dieState) return;
+        state.TriggerEvent(evt);
+    } 
     public void OnActionEventAct(OnActionEvent evt) => state.ActionEvent(evt);
     private void IntinializeState() => ChangeState(idleState);
     public void StartState() => ChangeState(runState);

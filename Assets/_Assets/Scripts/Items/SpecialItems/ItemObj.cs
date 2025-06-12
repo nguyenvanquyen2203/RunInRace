@@ -7,8 +7,25 @@ public class ItemObj : RaceObj
     {
         setUp.DisableObj(this);
     }
-    public void SetMaterial(Material material)
+    public void AddOutLine(Material material)
     {
-        gOM.material = material;
+        Material[] currentMs = gOM.materials;
+        if (currentMs.Length <= 1)
+        {
+            Material[] newMs = new Material[currentMs.Length + 1];
+            for (int i = 0; i < newMs.Length - 1; i++) newMs[i] = currentMs[i];
+            newMs[newMs.Length - 1] = material;
+            gOM.materials = newMs;
+        }
+    }
+    public void RemoveOutLine()
+    {
+        Material[] currentMs = gOM.materials;
+        if (currentMs.Length > 1)
+        {
+            Material[] newMs = new Material[currentMs.Length - 1];
+            for (int i = 0; i < newMs.Length; i++) newMs[i] = currentMs[i];
+            gOM.materials = newMs;
+        }
     }
 }

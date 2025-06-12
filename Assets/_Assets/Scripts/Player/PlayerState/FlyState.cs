@@ -32,7 +32,7 @@ public class FlyState : p_State
 
     public override void TriggerEvent(PlayerController.OnTriggerEvent evt)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Update()
