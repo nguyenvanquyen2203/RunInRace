@@ -49,6 +49,7 @@ public class AirCoinManager : MonoBehaviour
     }
     private void OnDisable()
     {
+        PlayerState.Instance.DisableRocket();
         setUp.DisableMap();
     }
     private void SpawnNextCoin()

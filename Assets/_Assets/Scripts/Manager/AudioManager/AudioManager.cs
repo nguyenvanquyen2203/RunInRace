@@ -26,6 +26,7 @@ public class AudioManager : MonoBehaviour
             s.InitSrc(src);
             s.SetVolumn(audioData.SFXVolumn);
         }
+        PlayMusic("MenuMusic");
     }
     public void PlaySFX(string name)
     {

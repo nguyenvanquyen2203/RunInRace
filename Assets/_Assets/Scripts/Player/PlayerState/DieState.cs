@@ -9,7 +9,7 @@ public class DieState : p_State
 
     public override void ActionEvent(PlayerController.OnActionEvent evt)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void EnterState()
@@ -22,7 +22,7 @@ public class DieState : p_State
 
     public override void ExitState()
     {
-        
+        controller.ResetCollider();
     }
 
     public override void FixedUpdate()

@@ -17,8 +17,8 @@ public class PowerUpInformation : MonoBehaviour
     }
     private void Start()
     {
-        LoadData();
-        Save();
+        LoadDefaultData();
+        //Save();
     }
     public void Save()
     {
@@ -35,6 +35,10 @@ public class PowerUpInformation : MonoBehaviour
         string saveString = File.ReadAllText(Application.dataPath + "/save.txt");
         powerUpData = JsonUtility.FromJson<PowerUpData>(saveString);
     }
+    public void LoadDefaultData()
+    {
+        powerUpData = new PowerUpData();
+    }
     public PowerUpSO GetPU(string name)
     {
         PowerUpInfor pU = powerUpData.GetPU(name);
@@ -47,7 +51,7 @@ public class PowerUpInformation : MonoBehaviour
         pU.timeActive = (float)Math.Round((double)pU.timeActive, 1);
         if (pU.upgradeCost < 10) pU.upgradeCost++;
         else pU.upgradeCost = (int)(pU.upgradeCost * 1.1f);
-        Save();
+        //Save();
     }
     public void ActivePowerUp(string name)
     {
@@ -109,6 +113,14 @@ public class PowerUpData
         {
             powerUps[i] = new PowerUpInfor(info.powerUps[i].namePU, info.powerUps[i].timeActive, info.powerUps[i].upgradeCost);
         }
+    }
+    public PowerUpData()
+    {
+        powerUps = new PowerUpInfor[4];
+        powerUps[0] = new PowerUpInfor("Shield", 6f, 20);
+        powerUps[1] = new PowerUpInfor("Magnet", 6f, 20);
+        powerUps[2] = new PowerUpInfor("ScoreBoost", 6f, 20);
+        powerUps[3] = new PowerUpInfor("Rocket", 10f, 30);
     }
     public PowerUpInfor GetPU(string name)
     {

@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     }
     public void ResetCollider()
     {
-        transform.position = new Vector3(transform.position.x, 0f, 0f);
+        //transform.position = new Vector3(transform.position.x, 0f, 0f);
         _collider.center = originalCollider.centerPos;
         _collider.radius = originalCollider.radius;
         _collider.height = originalCollider.height;
@@ -131,6 +131,10 @@ public class PlayerController : MonoBehaviour, IGameStateObserver
     }
     public void Death() => ChangeState(dieState);
     public void ResetForce() => rb.velocity = Vector3.zero;
+    public void StartChangeCollider()
+    {
+        _collider.height = .75f;
+    }
 }
 public class ColliderStatus
 {
